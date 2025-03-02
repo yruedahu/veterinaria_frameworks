@@ -18,8 +18,8 @@
 
 ### **1️⃣ Clonar el Repositorio**
 ```bash
-git clone https://github.com/TU_USUARIO/veterinary-management.git
-cd veterinary_project
+git clone https://github.com/yruedahu/Veterinary_project
+cd Veterinary_project
 ```
 
 ### **2️⃣ Crear y Activar un Entorno Virtual**
