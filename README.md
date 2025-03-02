@@ -22,7 +22,12 @@ git clone https://github.com/yruedahu/Veterinary_project
 cd Veterinary_project
 ```
 
-### **2️⃣ Crear y Activar un Entorno Virtual**
+### **2️⃣ Crear tu propia rama**
+```bash
+git checkout -b ["Tu nombre"]
+```
+
+### **3️⃣Crear y Activar un Entorno Virtual**
 ```bash
 python -m venv venv
 # En Windows
@@ -31,7 +36,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### **3️⃣ Instalar Dependencias**
+### **4️⃣Instalar Dependencias**
 ```bash
 pip install -r requirements.txt
 ```
