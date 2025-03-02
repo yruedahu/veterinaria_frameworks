@@ -1,0 +1,35 @@
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.env
+
+# Configuración de entorno
+.env
+venv/
+virtualenv/
+
+# Archivos de Django
+db.sqlite3
+/media/
+staticfiles/
+*.pot
+*.pyc
+*.pyo
+local_settings.py
+
+# Archivos de logs
+*.log
+*.out
+*.pid
+
+# Archivos de caché
+*.cache
+
+# Archivos de VSCode y JetBrains
+.vscode/
+.idea/
+
+# Configuración de Git
+.git/
