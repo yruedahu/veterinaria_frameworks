@@ -5,6 +5,7 @@ __pycache__/
 *.log
 *.env
 
+
 # Configuración de entorno
 .env
 venv/
