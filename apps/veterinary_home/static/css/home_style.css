@@ -1,3 +1,4 @@
+/* --- RESET GENERAL --- */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +13,7 @@ body {
 
 /* --- HEADER --- */
 header {
-    background: linear-gradient(to right, #4a2cb5, #6c47e0);
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -39,7 +40,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #f1c40f;
+    color: #F2C94C;
 }
 
 /* --- HERO SECTION --- */
@@ -48,7 +49,7 @@ nav ul li a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 60px 10%;
-    background: linear-gradient(to right, #4a2cb5, #6c47e0);
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
     color: white;
 }
 
@@ -67,7 +68,7 @@ nav ul li a:hover {
 }
 
 .hero-text .btn {
-    background: #f1c40f;
+    background: #F2C94C;
     color: #333;
     padding: 12px 25px;
     text-decoration: none;
@@ -78,7 +79,7 @@ nav ul li a:hover {
 }
 
 .hero-text .btn:hover {
-    background: #f39c12;
+    background: #E0A60B;
     transform: scale(1.05);
 }
 
@@ -95,7 +96,7 @@ nav ul li a:hover {
 .services h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #4a2cb5;
+    color: #2D9CDB;
 }
 
 .service-container {
@@ -129,7 +130,7 @@ nav ul li a:hover {
 .service-card h3 {
     margin-top: 15px;
     font-size: 1.5em;
-    color: #4a2cb5;
+    color: #2D9CDB;
 }
 
 .service-card p {
@@ -141,7 +142,7 @@ nav ul li a:hover {
 /* --- FOOTER --- */
 footer {
     text-align: center;
-    background: linear-gradient(to right, #4a2cb5, #6c47e0);
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
     color: white;
     padding: 20px 0;
     margin-top: 50px;
