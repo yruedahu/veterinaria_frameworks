@@ -1,4 +1,4 @@
-# 🏥 Veterinary Project
+# 🏥 Proyecto veterinaria
 
 🚀 **Veterinary Project** es una aplicación web desarrollada en **Django** para gestionar información de clínicas veterinarias. Permite administrar usuarios, mascotas, facturación, inventarios y más.
 
@@ -52,7 +52,7 @@ python manage.py runserver
 ## 📂 Estructura del Proyecto
 
 ```
-📦 veterinary_project
+📦 veterinaria_project
 ├── 📂 apps
 │   ├── 📂 veterinary_home
 │   │   ├── 📂 templates
