@@ -56,12 +56,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 ROOT_URLCONF = 'config.urls'
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'apps/veterinary_home/static'),
+    os.path.join(BASE_DIR, 'apps/veterinary_pets/static'),
 ]
 
 TEMPLATES = [
@@ -86,7 +89,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'veterinary_db',
@@ -97,7 +100,7 @@ DATABASES = {
             'authSource': 'admin', 
     }
  }
-}
+} """
 
 
 # Password validation
