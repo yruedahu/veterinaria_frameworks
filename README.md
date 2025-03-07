@@ -22,6 +22,7 @@ git clone https://github.com/yruedahu/veterinaria_frameworks
 cd veterinaria_frameworks
 ```
 
+
 ### **2️⃣ Crear tu propia rama**
 ```bash
 git checkout -b ["Tu nombre"]
