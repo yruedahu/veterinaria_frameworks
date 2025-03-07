@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Pets</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="" id="linkIndex">Inicio</a>
+        <h1>Iniciar sesión</h1>
+    </header>
+    <main>
+        <br>
+        <div id="login">
+            <form  method="post" id="form_login">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" name="correo" id="correo" placeholder="Correo electrónico">
+                <br>
+                <label for="contrasena">Contraseña</label>
+                <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                <br>
+                <div class="acciones">
+                    <button type="submit" name="ingresar">Ingresar</button>
+                    <br>
+                    <p>¿Aún no te has registrado?</p>
+                    <a href="">Regístrate</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
