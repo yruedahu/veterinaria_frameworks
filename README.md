@@ -18,8 +18,8 @@
 
 ### **1️⃣ Clonar el Repositorio**
 ```bash
-git clone https://github.com/yruedahu/Veterinary_project
-cd Veterinary_project
+git clone https://github.com/yruedahu/veterinaria_frameworks
+cd veterinaria_frameworks
 ```
 
 ### **2️⃣ Crear tu propia rama**
