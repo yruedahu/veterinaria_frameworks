@@ -1,40 +1,28 @@
 
-body {
-    font-family: 'Poppins', sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background: #f9f9f9;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
     color: #333;
-    text-align: center;
 }
 
-
-.invoice-container {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 80px;
-}
 
 header {
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #2D9CDB, #6FCF97);
-    padding: 15px 50px;
-    color: white;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
+    color: white;
     font-size: 1.8em;
 }
 
@@ -42,48 +30,66 @@ nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
-    padding: 0;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #F2C94C;
+}
+
+
+.invoice-container {
+    max-width: 800px;
+    background: white;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .invoice-header {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     border-bottom: 2px solid #2D9CDB;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     margin-bottom: 20px;
 }
 
 .company-info h2 {
     color: #2D9CDB;
-    margin-bottom: 5px;
 }
 
 .invoice-info h3 {
     color: #6FCF97;
 }
 
-.invoice-form label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: left;
+
+.invoice-form input, .invoice-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.invoice-form input,
-.invoice-form select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
+.invoice-form button {
+    background: #2D9CDB;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
 }
+
+.invoice-form button:hover {
+    background: #6FCF97;
+}
+
 
 .invoice-details table {
     width: 100%;
@@ -92,50 +98,73 @@ nav ul li a {
 }
 
 .invoice-details th, .invoice-details td {
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
 }
 
 .invoice-details th {
-    background: #2D9CDB;
+    background-color: #2D9CDB;
     color: white;
 }
+
+.invoice-details tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 
 .invoice-summary {
     text-align: right;
     margin-top: 20px;
-    font-size: 1.1em;
 }
 
+.invoice-summary p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+
 .invoice-buttons {
-    margin-top: 20px;
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .invoice-buttons button {
-    background: #F2C94C;
-    color: #333;
+    flex: 1;
+    margin: 5px;
     padding: 12px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: background 0.3s;
 }
 
-.invoice-buttons button:hover {
-    background: #E0A60B;
+.invoice-buttons .generate {
+    background: #F2C94C;
+    color: #333;
 }
 
-
-
-footer {
+.invoice-buttons .save {
     background: #6FCF97;
     color: white;
-    padding: 15px;
+}
+
+.invoice-buttons .print {
+    background: #2D9CDB;
+    color: white;
+}
+
+.invoice-buttons button:hover {
+    opacity: 0.8;
+}
+
+footer {
     text-align: center;
-    margin-top: 20px;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    color: white;
+    padding: 20px 0;
+    margin-top: 50px;
+    font-size: 1.1em;
 }

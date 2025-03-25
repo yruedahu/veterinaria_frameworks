@@ -32,7 +32,7 @@ git checkout -b ["Tu nombre"]
 ```bash
 python -m venv venv
 # En Windows
-venv\Scripts\activate
+venv/Scripts/activate
 # En macOS / Linux
 source venv/bin/activate
 ```

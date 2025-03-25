@@ -1,0 +1,102 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    padding: 15px 50px;
+    color: white;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header a#linkIndex {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 1.8em;
+}
+
+main {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+#login {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#login form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#login label {
+    font-weight: 600;
+    text-align: left;
+}
+
+#login input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.acciones {
+    margin-top: 10px;
+}
+
+.acciones button {
+    background: #F2C94C;
+    color: #333;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.acciones button:hover {
+    background: #E0A60B;
+}
+
+.acciones a {
+    color: #2D9CDB;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer {
+    background: #6FCF97;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
