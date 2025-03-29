@@ -1,0 +1,223 @@
+/* --- RESET GENERAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* --- HEADER --- */
+header {
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: white;
+    font-size: 1.8em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #F2C94C;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 10%;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    color: white;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h2 {
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.hero-text p {
+    margin: 15px 0;
+    font-size: 1.2em;
+}
+
+.hero-text .btn {
+    background: #F2C94C;
+    color: #333;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.hero-text .btn:hover {
+    background: #E0A60B;
+    transform: scale(1.05);
+}
+
+.hero-image img {
+    width: 350px;
+}
+
+/* --- INVENTORY SECTION --- */
+.inventory {
+    text-align: center;
+    padding: 60px 10%;
+}
+
+.inventory h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2D9CDB;
+}
+
+.inventory-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.inventory-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 280px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.inventory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.inventory-card h3 {
+    margin-top: 15px;
+    font-size: 1.5em;
+    color: #2D9CDB;
+}
+
+.inventory-card p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #555;
+}
+
+/* --- CAROUSEL SECTION --- */
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.carousel h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2D9CDB;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.carousel-item {
+    min-width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carousel-item h3 {
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: #2D9CDB;
+}
+
+.carousel-item p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #555;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-controls button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.2em;
+}
+
+.carousel-controls button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    color: white;
+    padding: 20px 0;
+    margin-top: 50px;
+    font-size: 1.1em;
+}
