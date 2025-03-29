@@ -1,4 +1,4 @@
-/* --- RESET GENERAL --- */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
     color: #333;
 }
 
-/* --- HEADER --- */
+
 header {
     background: linear-gradient(to right, #2D9CDB, #6FCF97);
     padding: 15px 30px;
@@ -43,103 +43,122 @@ nav ul li a:hover {
     color: #F2C94C;
 }
 
-/* --- HERO SECTION --- */
-.hero {
+.invoice-container {
+    max-width: 800px;
+    background: white;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 60px 10%;
-    background: linear-gradient(to right, #2D9CDB, #6FCF97);
-    color: white;
-}
-
-.hero-text {
-    max-width: 50%;
-}
-
-.hero-text h2 {
-    font-size: 3em;
-    font-weight: 700;
-}
-
-.hero-text p {
-    margin: 15px 0;
-    font-size: 1.2em;
-}
-
-.hero-text .btn {
-    background: #F2C94C;
-    color: #333;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.hero-text .btn:hover {
-    background: #E0A60B;
-    transform: scale(1.05);
-}
-
-.hero-image img {
-    width: 350px;
-}
-
-/* --- SERVICES SECTION --- */
-.services {
-    text-align: center;
-    padding: 60px 10%;
-}
-
-.services h2 {
-    font-size: 2.5em;
+    border-bottom: 2px solid #2D9CDB;
+    padding-bottom: 15px;
     margin-bottom: 20px;
+}
+
+.company-info h2 {
     color: #2D9CDB;
 }
 
-.service-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+.invoice-info h3 {
+    color: #6FCF97;
+}
+
+
+.invoice-form input, .invoice-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.invoice-form button {
+    background: #2D9CDB;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.invoice-form button:hover {
+    background: #6FCF97;
+}
+
+
+.invoice-details table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
 }
 
-.service-card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 280px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+.invoice-details th, .invoice-details td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.invoice-details th {
+    background-color: #2D9CDB;
+    color: white;
 }
 
-.service-card img {
-    width: 100%;
-    border-radius: 10px;
+.invoice-details tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-.service-card h3 {
-    margin-top: 15px;
-    font-size: 1.5em;
-    color: #2D9CDB;
+
+.invoice-summary {
+    text-align: right;
+    margin-top: 20px;
 }
 
-.service-card p {
-    margin-top: 10px;
-    font-size: 1em;
-    color: #555;
+.invoice-summary p {
+    font-size: 1.1em;
+    margin: 5px 0;
 }
 
-/* --- FOOTER --- */
+
+.invoice-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.invoice-buttons button {
+    flex: 1;
+    margin: 5px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.invoice-buttons .generate {
+    background: #F2C94C;
+    color: #333;
+}
+
+.invoice-buttons .save {
+    background: #6FCF97;
+    color: white;
+}
+
+.invoice-buttons .print {
+    background: #2D9CDB;
+    color: white;
+}
+
+.invoice-buttons button:hover {
+    opacity: 0.8;
+}
+
 footer {
     text-align: center;
     background: linear-gradient(to right, #2D9CDB, #6FCF97);
