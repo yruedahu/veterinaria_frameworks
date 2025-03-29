@@ -33,6 +33,10 @@ header .logo img {
     height: 50px;
 }
 
+nav {
+    margin-right: 100px; /* Ajusta el valor según lo necesites */
+}
+
 nav ul {
     list-style: none;
     display: flex;

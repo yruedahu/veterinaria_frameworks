@@ -1,3 +1,9 @@
-from django.db import models
+from djongo import models
 
-# Create your models here.
+class Pet(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    species = models.CharField(max_length=50)
+    owner = models.CharField(max_length=100)
+    born_date = models.DateField()
+

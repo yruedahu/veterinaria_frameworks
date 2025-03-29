@@ -87,19 +87,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'veterinary_db',
-        'CLIENT': {
-            'host': 'mongodb://localhost:27017',  
-            'username': '', 
-            'password': '',  
-            'authSource': 'admin', 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
- }
 }
 
 
