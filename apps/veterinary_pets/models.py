@@ -13,10 +13,10 @@ class Owner(models.Model):
 class Pet(models.Model):
     name = models.CharField(max_length=100)
     species = models.CharField(max_length=50)
-    breed = models.CharField(max_length=100)
+    breed = models.CharField(max_length=100, null=True, blank=True)
     age = models.IntegerField()
     born_date = models.DateField()
-    weight = models.DecimalField(max_digits=5, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     vaccinated = models.BooleanField(default=False)
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name="pets")
 
