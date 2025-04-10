@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - Detalle</title>
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Detalle del Producto</h1>
+            <nav>
+                <a href="{% url 'home_inventory' %}" class="btn">Volver al Inventario</a>
+            </nav>
+        </header>
+
+        <main class="product-detail">
+            <h2>{{ product.name }}</h2>
+            <ul>
+                <li><strong>Descripción:</strong> {{ description }}</li>
+                <li><strong>Categoría:</strong> {{ category }}</li>
+                <li><strong>Proveedor:</strong> {{ supplier }}</li>
+                <li><strong>Precio:</strong> ${{ price }}</li>
+                <li><strong>Stock disponible:</strong> {{ stock }}</li>
+                <li><strong>Última actualización:</strong> {{ product.updated_at|date:"d M Y - H:i" }}</li>
+            </ul>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Veterinaria PYTHON - Gestión de Inventario</p>
+    </footer>
+</body>
+
+</html>
