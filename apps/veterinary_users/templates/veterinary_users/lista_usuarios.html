@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+
+    <p>Total de usuarios registrados: {{ total_usuarios }}</p>
+
+    <ul>
+        {% for usuario in usuarios %}
+        <li>
+            <a href="{% url 'detalle_usuario' usuario.id %}">
+                {{ usuario.nombres }} {{ usuario.apellidos }}
+            </a> - {{ usuario.correo }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
