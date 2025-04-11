@@ -65,6 +65,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'apps/veterinary_home/static'),
     os.path.join(BASE_DIR, 'apps/veterinary_pets/static'),
+    os.path.join(BASE_DIR, 'apps/veterinary_users/static'),
 ]
 
 TEMPLATES = [
