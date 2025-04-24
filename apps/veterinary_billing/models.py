@@ -8,7 +8,7 @@ class Cliente(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return self.nombre_cliente
+        return self.nombre_Cliente
 
 class Mascota (models.Model):
     nombre = models.CharField(max_length=255)
@@ -20,7 +20,7 @@ class Mascota (models.Model):
         return self.nombre
 
 class Factura (models.Model):
-    numero_factura = models.CharField (max_length=20)
+    numero_factura = models.CharField (max_length=20, db_index=True)
     descripcion = models.TextField()
     cantidad = models.IntegerField()
     precio = models.DecimalField (max_digits=10, decimal_places=2)              
