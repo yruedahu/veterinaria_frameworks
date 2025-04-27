@@ -147,4 +147,7 @@ footer {
     padding: 20px 0;
     margin-top: 50px;
     font-size: 1.1em;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
 }

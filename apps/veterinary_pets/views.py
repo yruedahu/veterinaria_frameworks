@@ -7,11 +7,11 @@ def pets_home(request):
 def pet_detail(request, pet_id):
     pet = get_object_or_404(Pet, pk=pet_id)
 
-    context = {
+    pets = {
         'pet': pet,
         'owner': pet.owner.full_name,
         'email': pet.owner.email,
         'phone': pet.owner.phone,
         'address': pet.owner.address,
     }
-    return render(request, 'veterinary_pets/pet_detail.html', context)
+    return render(request, 'veterinary_pets/pet_detail.html', pets)

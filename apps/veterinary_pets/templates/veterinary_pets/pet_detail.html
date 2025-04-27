@@ -1,39 +1,22 @@
+{% extends 'veterinary_pets/base_pets.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ pet.name }} - Detalle</title>
-    <link rel="stylesheet" href="{% static 'css/pet_detail.css' %}">
-</head>
-<body>
-    <div class="wrapper">
-        <header>
-            <h1>Detalle de Mascota</h1>
-            <nav>
-                <a href="{% url 'home_pets' %}" class="btn">Volver a Mascotas</a>
-            </nav>
-        </header>
 
-        <main class="pet-detail">
-            <h2>{{ pet.name }}</h2>
-            <ul>
-                <li><strong>Especie:</strong> {{ pet.species }}</li>
-                <li><strong>Raza:</strong> {{ pet.breed }}</li>
-                <li><strong>Edad:</strong> {{ pet.age }} años</li>
-                <li><strong>Fecha de Nacimiento:</strong> {{ pet.born_date }}</li>
-                <li><strong>Peso:</strong> {{ pet.weight }} kg</li>
-                <li><strong>Vacunado:</strong> {{ pet.vaccinated|yesno:"Sí,No" }}</li>
-                <li><strong>Dueño:</strong> {{ owner }}</li>
-                <li><strong>Email del dueño:</strong> {{ email }}</li>
-                <li><strong>Teléfono:</strong> {{ phone }}</li>
-                <li><strong>Dirección:</strong> {{ address }}</li>
-            </ul>
-        </main>
-    </div>
+{% block title %}{{ pet.name }} - Detalle{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 Veterinaria PYTHON - Gestión de Mascotas</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+<main class="pet-detail">
+    <h2>{{ pet.name }}</h2>
+    <ul>
+        <li><strong>Especie:</strong> {{ pet.species }}</li>
+        <li><strong>Raza:</strong> {{ pet.breed }}</li>
+        <li><strong>Edad:</strong> {{ pet.age }} años</li>
+        <li><strong>Fecha de Nacimiento:</strong> {{ pet.born_date }}</li>
+        <li><strong>Peso:</strong> {{ pet.weight }} kg</li>
+        <li><strong>Vacunado:</strong> {{ pet.vaccinated|yesno:"Sí,No" }}</li>
+        <li><strong>Dueño:</strong> {{ owner }}</li>
+        <li><strong>Email del dueño:</strong> {{ email }}</li>
+        <li><strong>Teléfono:</strong> {{ phone }}</li>
+        <li><strong>Dirección:</strong> {{ address }}</li>
+    </ul>
+</main>
+{% endblock %}
