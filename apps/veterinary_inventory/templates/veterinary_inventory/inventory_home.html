@@ -1,104 +1,59 @@
+{% extends 'veterinary_inventory/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario - Veterinaria PYTHON</title>
-    <link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.1/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.1/swiper-bundle.min.css">
-</head>
-<body>
-    <header>
-        <h1>Inventario Veterinaria</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Inventario</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h2>Gestiona tu Inventario</h2>
-            <p>Controla y administra los productos de tu veterinaria de manera eficiente.</p>
-            <a href="#" class="btn">Ver Productos</a>
-        </div>
-        <div class="hero-image">
-            <img src="{% static 'images/inventory.png' %}" alt="Inventario de productos">
-        </div>
-    </section>
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
+{% endblock %}
 
-    <section class="inventory">
-        <h2>Productos Destacados</h2>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="{% static 'images/medicines.png' %}" alt="Medicamentos">
-                    <h3>Medicamentos</h3>
-                    <p>Encuentra los mejores tratamientos para tus pacientes.</p>
-                </div>
-                <div class="swiper-slide">
-                    <img src="{% static 'images/food.png' %}" alt="Alimentos">
-                    <h3>Alimentos</h3>
-                    <p>Nutrición de calidad para cada mascota.</p>
-                </div>
-                <div class="swiper-slide">
-                    <img src="{% static 'images/accessories.png' %}" alt="Accesorios">
-                    <h3>Accesorios</h3>
-                    <p>Juguetes, camas y más para el bienestar de las mascotas.</p>
-                </div>
-                <div class="swiper-slide">
-                    <img src="{% static 'images/hygiene.png' %}" alt="Higiene">
-                    <h3>Higiene</h3>
-                    <p>Productos para el cuidado y limpieza de las mascotas.</p>
-                </div>
-                <div class="swiper-slide">
-                    <img src="{% static 'images/toys.png' %}" alt="Juguetes">
-                    <h3>Juguetes</h3>
-                    <p>Diversión asegurada para las mascotas.</p>
-                </div>
+{% block title %}Inventario - Veterinaria PYTHON{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <h2>Gestiona tu Inventario</h2>
+        <p>Controla y administra los productos de tu veterinaria de manera eficiente.</p>
+        <a href="product/1/" class="btn">Ver Productos</a>
+    </div>
+    <div class="hero-image">
+        <img src="{% static 'images/inventory.png' %}" alt="Inventario de productos">
+    </div>
+</section>
+
+<section class="inventory">
+    <h2>Productos Destacados</h2>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="{% static 'images/medicines.png' %}" alt="Medicamentos">
+                <h3>Medicamentos</h3>
+                <p>Encuentra los mejores tratamientos para tus pacientes.</p>
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-slide">
+                <img src="{% static 'images/food.png' %}" alt="Alimentos">
+                <h3>Alimentos</h3>
+                <p>Nutrición de calidad para cada mascota.</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="{% static 'images/accessories.png' %}" alt="Accesorios">
+                <h3>Accesorios</h3>
+                <p>Juguetes, camas y más para el bienestar de las mascotas.</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="{% static 'images/hygiene.png' %}" alt="Higiene">
+                <h3>Higiene</h3>
+                <p>Productos para el cuidado y limpieza de las mascotas.</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="{% static 'images/toys.png' %}" alt="Juguetes">
+                <h3>Juguetes</h3>
+                <p>Diversión asegurada para las mascotas.</p>
+            </div>
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Veterinaria PYTHON - Gestión de Inventario</p>
-    </footer>
-
-    <script>
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            slidesPerView: 3,
-            spaceBetween: 20,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                480: {
-                    slidesPerView: 1,
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+{% endblock %}
 
 

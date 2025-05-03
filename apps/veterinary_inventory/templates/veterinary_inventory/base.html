@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Veterinaria PYTHON{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    {% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <h1>{% block header_title %}Veterinaria PYTHON{% endblock %}</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Inventario</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Veterinaria PYTHON - Gestión de Inventario</p>
+    </footer>
+</body>
+
+</html>
