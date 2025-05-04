@@ -40,7 +40,7 @@ main {
     padding: 20px;
 }
 
-#login, #registro {
+#login, #registro, #cuenta_usuarios {
     max-width: 400px;
     margin: 0 auto;
     background: white;
@@ -49,18 +49,18 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#login form, #registro form {
+#login form, #registro form, #cuenta_usuarios form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-#login label, #registro label {
+#login label, #registro label, #cuenta_usuarios label {
     font-weight: 600;
     text-align: left;
 }
 
-#login input, #registro input, #registro select {
+#login input, #registro input, #registro select, #cuenta_usuarios input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

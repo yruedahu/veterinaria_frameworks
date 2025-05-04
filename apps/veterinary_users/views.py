@@ -6,3 +6,6 @@ def home_users(request):
 
 def registro_usuarios(request):
     return render(request, 'veterinary_users/registro_usuarios.html')
+
+def cuenta_usuarios(request):
+    return render(request, 'veterinary_users/cuenta_usuarios.html')
