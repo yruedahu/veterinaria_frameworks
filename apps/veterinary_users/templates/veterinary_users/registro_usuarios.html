@@ -11,13 +11,13 @@
 </head>
 <body>
     <header>
-        <a href="" id="linkIndex">Inicio</a>
+        <a href="{% url 'home_users' %}" id="linkIndex">Inicio</a>
         <h1>Agregar usuario</h1>
     </header>
     <main>
         <div id="registro">
             <form method="post" id="form_registro">
-                <!-- {% csrf_token %} -->
+                {% csrf_token %}
                 <label for="nombres">Nombres:</label>
                 <input type="text" id="nombres" name="nombres" maxlength="50" required>
                 <label for="apellidos">Apellidos:</label>
