@@ -15,7 +15,7 @@ header {
     background: linear-gradient(to right, #2D9CDB, #6FCF97);
     padding: 15px 50px;
     color: white;
-    width: 100%;
+    width: auto;
     top: 0;
     left: 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -36,11 +36,11 @@ header h1 {
 }
 
 main {
-    margin-top: 100px;
+    margin-top: 40px;
     padding: 20px;
 }
 
-#login {
+#login, #registro {
     max-width: 400px;
     margin: 0 auto;
     background: white;
@@ -49,18 +49,18 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#login form {
+#login form, #registro form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-#login label {
+#login label, #registro label {
     font-weight: 600;
     text-align: left;
 }
 
-#login input {
+#login input, #registro input, #registro select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
