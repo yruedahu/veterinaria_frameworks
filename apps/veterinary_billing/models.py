@@ -1,32 +1,43 @@
 from django.db import models
 
 # Create your models here.
-class Cliente(models.Model):
-    nombre_Cliente = models.CharField(max_length=150)
-    telefono = models.CharField(max_length=20)
-    direccion = models.CharField(max_length=255)
+class Client(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
     email = models.EmailField()
+    address = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.nombre_Cliente
+        return self.name
 
-class Mascota (models.Model):
-    nombre = models.CharField(max_length=255)
-    especie = models.CharField(max_length=100)
-    raza = models.CharField(max_length=100)
-    edad = models.IntegerField()
+class Pets(models.Model):
+    name = models.CharField(max_length=100)
+    species = models.CharField(max_length=50)
+    breed = models.CharField(max_length=50)
+    age = models.IntegerField()
+    owner = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name} ({self.species})"
+
+class Service(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
     
-    def __str__(self):
-        return self.nombre
+class Invoice(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    pet = models.ForeignKey(Pets, on_delete=models.CASCADE)
+    services = models.ManyToManyField(Service)
+    date = models.DateField()
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    notes = models.TextField(blank=True, null=True) 
 
-class Factura (models.Model):
-    numero_factura = models.CharField (max_length=20, db_index=True)
-    descripcion = models.TextField()
-    cantidad = models.IntegerField()
-    precio = models.DecimalField (max_digits=10, decimal_places=2)              
-    
     def __str__(self):
-        return self.numero_factura
+        return f"Factura #{self.id} - {self.client.name}"
     
 # Tipos de Datos en Django
 # CharField: models.CharField()
