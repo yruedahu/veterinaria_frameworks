@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - Detalle</title>
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Detalle del Producto</h1>
+            <nav>
+                <a href="{% url 'home_inventory' %}" class="btn">Volver al Inventario</a>
+            </nav>
+        </header>
+
+        <section class="product-detail-section">
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="{% static 'images/medicine.png' %}" alt="{{ product.name }}">
+                </div>
+                <div class="product-info">
+                    <h2>{{ product.name }}</h2>
+                    <p class="product-description-text">
+                        Descripción: {{ description }}
+                    </p>
+                    <ul>
+                        <li><strong>Categoría:</strong> {{ category }}</li>
+                        <li><strong>Proveedor:</strong> {{ supplier }}</li>
+                        <li><strong>Precio:</strong> ${{ price }}</li>
+                        <li><strong>Stock disponible:</strong> {{ stock }}</li>
+                        <li><strong>Última actualización:</strong> {{ product.updated_at|date:"d M Y - H:i" }}</li>
+                    </ul>
+                    <a href="{% url 'product_detail' product.id|add:'-1' %}" class="btn">Anterior</a>
+                    <a href="{% url 'product_detail' product.id|add:'1' %}" class="btn">Siguiente</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Veterinaria PYTHON - Gestión de Inventario</p>
+    </footer>
+</body>
+
+</html>

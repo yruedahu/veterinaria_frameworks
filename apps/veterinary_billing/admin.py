@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Cliente, Mascota, Factura
+from .models import Client, Pets, Service, Invoice
 
 # Register your models here.
-admin.site.register(Cliente)
-admin.site.register(Mascota)
-admin.site.register(Factura)
+admin.site.register(Client)
+admin.site.register(Pets)
+admin.site.register(Service)
+admin.site.register(Invoice)
 
