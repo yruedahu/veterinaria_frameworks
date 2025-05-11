@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="" id="linkIndex">Inicio</a>
+        <h1>Cuenta de usuario</h1>
+    </header>
+    <main>
+        <div id="cuenta_usuarios">
+            <form method="post" id="form_cuenta_usuarios">
+                {% csrf_token %}
+                {% if usuario_id %}
+                    <input type="hidden" name="usuario_id" value="{{ usuario_id }}">
+                {% endif %}
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" maxlength="50" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" maxlength="50" required>
+                <label for="is_active">
+                    Activo
+                    <input type="checkbox" id="is_active" name="is_active" checked>
+                </label>
+                <div class="acciones">
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar usuario</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{% url 'home_users' %}" id="linkIndex">Inicio</a>
+        <h1>Agregar usuario</h1>
+    </header>
+    <main>
+        <div id="registro">
+            <form method="post" id="form_registro">
+                {% csrf_token %}
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" maxlength="50" required>
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" maxlength="50" required>
+                <label for="tipodocumento">Tipodocumento:</label>
+                <select id="tipodocumento" name="tipodocumento" required>
+                    <option value="">----------</option>
+                    <option value="cc">Cédula de ciudadanía</option>
+                    <option value="ti">Tarjeta de identidad</option>
+                    <option value="ce">Cédula de extranjería</option>
+                    <option value="pasaporte">Pasaporte</option>
+                </select>
+                <label for="numerodocumento">Numerodocumento:</label>
+                <input type="text" id="numerodocumento" name="numerodocumento" maxlength="20" required>
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" maxlength="100" required>
+                <label for="celular">Celular:</label>
+                <input type="text" id="celular" name="celular" maxlength="15" required>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" maxlength="100" required>
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" required>
+                    <option value="">----------</option>
+                    <option value="admin">Administrador</option>
+                    <option value="veterinario">Veterinario</option>
+                    <option value="recepcionista">Recepcionista</option>
+                    <option value="cliente">Cliente</option>
+                </select>
+                <div class="acciones">
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
