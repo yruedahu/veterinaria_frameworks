@@ -17,13 +17,21 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#about">Sobre Nosotros</a></li>
-                <li><a href="#services">Servicios</a></li>
+                <li><a href="{% url 'home' %}">Sobre Nosotros</a></li>
+                <li><a href="{% url 'home_pets' %}">Servicios</a></li>
                 <li><a href="#gallery">Galería</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
     </header>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <main class="page-content">
         {% block content %}{% endblock %}

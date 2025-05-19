@@ -14,6 +14,24 @@ body {
     margin: auto;
 }
 
+/* --- GLOBAL BUTTON STYLES --- */
+.btn {
+    background: #F2C94C;
+    color: #333;
+    padding: 12px 24px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: #E0A60B;
+    transform: scale(1.05);
+}
+
 /* --- HEADER --- */
 header {
     display: flex;
@@ -181,14 +199,75 @@ h2 {
     background: #E0A60B;
 }
 
+form input, form textarea {
+    font-size: 1.2em;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 0 auto 15px auto; 
+}
+
+/* Aumentar el tamaño del checkbox */
+form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer; /* Cambiar el cursor para indicar interactividad */
+}
+
+/* Ajustar la posición del checkbox y botón en el formulario de registro */
+form label {
+    display: block; /* Asegurar que el label ocupe toda la línea */
+    text-align: center; /* Centrar el texto del label */
+    margin-bottom: 10px; /* Separar visualmente del checkbox */
+}
+
+form button {
+    display: block;
+    margin: 20px auto 0 auto; /* Centrar el botón */
+}
+
+form button {
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border-radius: 8px;
+}
+
 /* --- FOOTER --- */
 footer {
     background: #6FCF97;
     color: white;
     padding: 15px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px; 
     width: 100%;
+    position: relative;
+    bottom: auto;
+}
+
+/* Estilo para los mensajes flash */
+.messages {
     position: fixed;
-    bottom: 0;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    width: auto;
+    max-width: 300px;
+}
+
+.message {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    color: white;
+}
+
+.message.success {
+    background-color: #4CAF50;
+}
+
+.message.error {
+    background-color: #F44336;
 }

@@ -18,5 +18,13 @@
         <li><strong>Teléfono:</strong> {{ phone }}</li>
         <li><strong>Dirección:</strong> {{ address }}</li>
     </ul>
+    <nav>
+        {% if prev_pet %}
+            <a href="{% url 'pet_detail' prev_pet.id %}" class="btn">Anterior</a>
+        {% endif %}
+        {% if next_pet %}
+            <a href="{% url 'pet_detail' next_pet.id %}" class="btn">Siguiente</a>
+        {% endif %}
+    </nav>
 </main>
 {% endblock %}
