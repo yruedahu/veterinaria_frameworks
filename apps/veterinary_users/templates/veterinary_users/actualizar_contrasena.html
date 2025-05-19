@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Contraseña</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="" id="linkIndex">Dashboard</a>
+        <h1>Actualizar contraseña</h1>
+    </header>
+    <main>
+        <div id="actualizar_contrasena">
+            <form method="post" id="form_actualizar_contrasena">
+                {% csrf_token %}
+                <label for="old_password">Contraseña actual:</label>
+                <input type="password" id="old_password" name="old_password" placeholder="Contraseña actual" required>
+                <label for="new_password1">Nueva contraseña:</label>
+                <input type="password" id="new_password1" name="new_password1" placeholder="Nueva contraseña" required>
+                <label for="new_password2">Confirmar nueva contraseña:</label>
+                <input type="password" id="new_password2" name="new_password2" placeholder="Confirmar nueva contraseña" required>
+                <div class="acciones">
+                    <button type="submit">Actualizar contraseña</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
