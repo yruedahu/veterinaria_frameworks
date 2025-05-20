@@ -541,28 +541,98 @@ table.table td {
     }
 }
 
-@media (max-width: 700px) {
-    .page-content {
-        padding: 15px 5px;
+/* --- HERO CARDS ROW FIX: Mantener horizontal en desktop --- */
+.inventory-hero-cards-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    margin: 40px auto 32px auto;
+    max-width: 1400px;
+}
+@media (max-width: 1100px) {
+    .inventory-hero-cards-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+    .inventory-hero-card {
+        min-width: 220px;
         max-width: 98vw;
+        width: 100%;
     }
-    table.table th, table.table td {
-        padding: 10px 4px;
-        font-size: 0.98em;
+}
+@media (max-width: 900px) {
+    .inventory-hero-cards-row {
+        flex-direction: column;
+        align-items: center;
     }
-    .page-content {
-        padding: 10px 2px;
+}
+
+/* --- INVENTORY CARDS STYLES --- */
+.inventory-hero-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1 1 300px;
+    min-width: 280px;
+    max-width: calc(33.333% - 32px);
+    margin: 0 auto;
+    text-align: center;
+}
+.inventory-hero-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.inventory-hero-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.inventory-hero-card h3 {
+    font-size: 1.4em;
+    color: #2D9CDB;
+    margin-bottom: 10px;
+}
+.inventory-hero-card p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+}
+.inventory-hero-card .btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.1em;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+    background: #F2C94C;
+    color: #333;
+    border: none;
+    cursor: pointer;
+}
+.inventory-hero-card .btn:hover {
+    background: #e1b83c;
+    transform: scale(1.03);
+}
+@media (max-width: 900px) {
+    .inventory-hero-card {
+        max-width: 90%;
     }
-    .inventory-hero-home-fix, .inventory-carousel-home-fix {
-        padding: 10px 2vw;
-    }
-    .inventory-carousel-section-wide .swiper-slide {
-        min-height: 200px;
-        max-width: 95vw;
-        padding: 14px 4px 10px 4px;
-    }
-    .inventory-carousel-section-wide .swiper-slide img {
-        width: 80px;
-        height: 80px;
-    }
+}
+
+/* --- INVENTORY HOME: FULL WIDTH FIX --- */
+body.inventory-home main.page-content {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
