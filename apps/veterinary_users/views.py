@@ -9,3 +9,15 @@ def registro_usuarios(request):
 
 def cuenta_usuarios(request):
     return render(request, 'veterinary_users/cuenta_usuarios.html')
+
+def actualizar_usuarios(request):
+    return render(request, 'veterinary_users/actualizar_usuarios.html')
+
+def actualizar_contrasena(request):
+    return render(request, 'veterinary_users/actualizar_contrasena.html')
+
+def rol(request):
+    return render(request, 'veterinary_users/rol.html')
+
+def editar_rol(request):
+    return render(request, 'veterinary_users/a_e_rol.html')
