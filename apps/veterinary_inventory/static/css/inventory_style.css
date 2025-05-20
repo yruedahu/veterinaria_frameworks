@@ -311,9 +311,98 @@ footer {
     color: #856404 !important;
 }
 
+/* --- TABLE STYLES --- */
+table.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin: 30px 0 0 0;
+    overflow: hidden;
+}
+table.table th, table.table td {
+    padding: 16px 12px;
+    text-align: left;
+    font-size: 1.08em;
+}
+table.table th {
+    background: #f7f7f7;
+    font-weight: 600;
+    color: #222;
+}
+table.table tr {
+    border-bottom: 1px solid #ececec;
+}
+table.table tr:last-child {
+    border-bottom: none;
+}
+table.table td {
+    vertical-align: middle;
+}
+table.table td .btn {
+    width: 100%;
+    margin: 4px 0;
+    font-size: 1em;
+}
+table.table td {
+    min-width: 120px;
+}
+
+/* --- HERO HOME INVENTORY --- */
+.inventory-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 220px;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    border-radius: 16px;
+    margin-bottom: 32px;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 0 40px;
+    gap: 40px;
+}
+.inventory-hero-text {
+    text-align: left;
+    padding: 40px 0;
+    flex: 1 1 0;
+}
+.inventory-hero-image {
+    flex: 0 0 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inventory-hero-image img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+@media (max-width: 900px) {
+    .inventory-hero {
+        flex-direction: column;
+        padding: 20px 10px;
+        gap: 20px;
+    }
+    .inventory-hero-image {
+        flex: none;
+    }
+}
+
 @media (max-width: 700px) {
     .page-content {
         padding: 15px 5px;
         max-width: 98vw;
+    }
+    table.table th, table.table td {
+        padding: 10px 4px;
+        font-size: 0.98em;
+    }
+    .page-content {
+        padding: 10px 2px;
     }
 }
