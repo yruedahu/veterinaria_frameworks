@@ -11,6 +11,14 @@ body {
     color: #333;
 }
 
+.logo img {
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+.logo:hover {
+  transform: scale(1.12);   
+}
 
 header {
     background: linear-gradient(to right, #2D9CDB, #6FCF97);
