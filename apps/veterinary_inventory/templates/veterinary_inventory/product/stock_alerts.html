@@ -1,0 +1,25 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Alertas de Stock Bajo</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad en stock</th>
+            <th>Stock mínimo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in low_stock_products %}
+        <tr class="low-stock">
+            <td>{{ stock.product.name }}</td>
+            <td>{{ stock.quantity }}</td>
+            <td>{{ stock.min_stock }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No hay productos con stock bajo.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'product_list' %}" class="btn">Volver a productos</a>
+{% endblock %}

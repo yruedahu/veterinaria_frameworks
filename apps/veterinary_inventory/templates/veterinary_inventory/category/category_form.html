@@ -1,0 +1,13 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>{% if category %}Editar{% else %}Agregar{% endif %} Categoría</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Nombre:</label>
+    <input type="text" name="name" value="{{ category.name|default:'' }}" required><br>
+    <label>Descripción:</label>
+    <textarea name="description">{{ category.description|default:'' }}</textarea><br>
+    <button type="submit" class="btn">Guardar</button>
+    <a href="{% url 'category_list' %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}

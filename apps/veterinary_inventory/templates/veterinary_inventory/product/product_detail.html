@@ -1,0 +1,21 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Detalle de Producto</h2>
+<div class="product-detail-box">
+    <p><strong>Nombre:</strong> {{ product.name }}</p>
+    <p><strong>Categoría:</strong> {{ product.category.name }}</p>
+    <p><strong>Proveedor:</strong> {{ product.supplier.name }}</p>
+    <p><strong>Precio:</strong> ${{ product.price }}</p>
+    <p><strong>Descripción:</strong> {{ product.description }}</p>
+    <p><strong>Stock:</strong> {{ product.stock.quantity }}</p>
+    <div style="margin-top: 2em; display: flex; gap: 1em;">
+        {% if prev_product %}
+            <a href="{% url 'product_detail' prev_product.pk %}" class="btn">&larr; Anterior</a>
+        {% endif %}
+        <a href="{% url 'product_list' %}" class="btn">Volver a productos</a>
+        {% if next_product %}
+            <a href="{% url 'product_detail' next_product.pk %}" class="btn">Siguiente &rarr;</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

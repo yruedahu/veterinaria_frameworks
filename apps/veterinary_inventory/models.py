@@ -39,6 +39,9 @@ class Stock(models.Model):
     def __str__(self):
         return f"{self.product.name} - {self.quantity} en stock"
 
+    def is_low_stock(self):
+        return self.quantity <= self.min_stock
+
 class Transaction(models.Model):
     TRANSACTION_TYPES = (
         ('IN', 'Entrada'),
@@ -49,6 +52,7 @@ class Transaction(models.Model):
     quantity = models.PositiveIntegerField(verbose_name="Cantidad")
     date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de transacción")
     note = models.TextField(blank=True, null=True, verbose_name="Nota")
+    exported = models.BooleanField(default=False, verbose_name="Exportado a Excel/PDF")
 
     def __str__(self):
         return f"{self.get_transaction_type_display()} - {self.product.name} ({self.quantity})"

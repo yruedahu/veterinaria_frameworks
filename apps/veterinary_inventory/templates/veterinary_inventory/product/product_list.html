@@ -1,0 +1,42 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Lista de Productos</h2>
+<a href="{% url 'product_create' %}" class="btn">Agregar Producto</a>
+<form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Buscar producto..." value="{{ request.GET.q }}">
+    <button type="submit">Buscar</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Proveedor</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr {% if product.stock.is_low_stock %}class="low-stock"{% endif %}>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>{{ product.supplier.name }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.stock.quantity }}</td>
+            <td style="display: flex; flex-direction: column; gap: 8px;">
+                <a href="{% url 'product_detail' product.pk %}" class="btn btn-sm btn-info">Detalles</a>
+                <a href="{% url 'product_edit' product.pk %}" class="btn btn-sm">Editar</a>
+                <a href="{% url 'product_delete' product.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                {% if product.stock.is_low_stock %}
+                    <a href="{% url 'product_stock_alerts' %}" class="btn btn-sm btn-warning">Stock Alert</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No hay productos.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Eliminar Proveedor</h2>
+<p>¿Estás seguro de que deseas eliminar el proveedor <strong>{{ supplier.name }}</strong>?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'supplier_list' %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}

@@ -212,12 +212,108 @@ nav ul li a:hover {
     background: rgba(0, 0, 0, 0.8);
 }
 
+/* --- MAIN CONTENT --- */
+.page-content {
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    padding: 30px 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-content h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+.page-content p, .page-content a.btn {
+    text-align: left;
+    width: 100%;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    background: #F2C94C;
+    color: #333;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #e1b83c;
+    transform: scale(1.05);
+}
+
+/* --- FORM FIELDS --- */
+label {
+    font-size: 1.15em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+    font-size: 1.15em;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid #bdbdbd;
+    margin-bottom: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f8f8f8;
+    transition: border 0.2s;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    border: 1.5px solid #2D9CDB;
+    outline: none;
+    background: #fff;
+}
+
 /* --- FOOTER --- */
 footer {
     text-align: center;
     background: linear-gradient(to right, #2D9CDB, #6FCF97);
     color: white;
     padding: 20px 0;
-    margin-top: 50px;
     font-size: 1.1em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* --- LOW STOCK HIGHLIGHT --- */
+.low-stock {
+    background-color: #fff3cd !important;
+    color: #856404 !important;
+}
+
+@media (max-width: 700px) {
+    .page-content {
+        padding: 15px 5px;
+        max-width: 98vw;
+    }
 }

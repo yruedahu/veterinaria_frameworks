@@ -1,0 +1,24 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Registrar Movimiento de Inventario</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Producto:</label>
+    <select name="product" required>
+        {% for prod in products %}
+        <option value="{{ prod.pk }}">{{ prod.name }}</option>
+        {% endfor %}
+    </select><br>
+    <label>Tipo de movimiento:</label>
+    <select name="transaction_type" required>
+        <option value="IN">Entrada</option>
+        <option value="OUT">Salida</option>
+    </select><br>
+    <label>Cantidad:</label>
+    <input type="number" name="quantity" min="1" required><br>
+    <label>Nota:</label>
+    <textarea name="note"></textarea><br>
+    <button type="submit" class="btn">Registrar</button>
+    <a href="{% url 'movement_list' %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}

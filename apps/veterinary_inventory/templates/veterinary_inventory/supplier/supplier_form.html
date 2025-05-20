@@ -1,0 +1,19 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>{% if supplier %}Editar{% else %}Agregar{% endif %} Proveedor</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Nombre:</label>
+    <input type="text" name="name" value="{{ supplier.name|default:'' }}" required><br>
+    <label>Contacto:</label>
+    <input type="text" name="contact" value="{{ supplier.contact|default:'' }}" required><br>
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ supplier.email|default:'' }}" required><br>
+    <label>Teléfono:</label>
+    <input type="text" name="phone" value="{{ supplier.phone|default:'' }}" required><br>
+    <label>Dirección:</label>
+    <textarea name="address" required>{{ supplier.address|default:'' }}</textarea><br>
+    <button type="submit" class="btn">Guardar</button>
+    <a href="{% url 'supplier_list' %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}
