@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinary Pets</title>
+    <title>Home Usuario</title>
     <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -18,17 +18,16 @@
         <br>
         <div id="login">
             <form  method="post" id="form_login">
+                {% csrf_token %}
                 <label for="correo">Correo electrónico</label>
                 <input type="email" name="correo" id="correo" placeholder="Correo electrónico">
-                <br>
                 <label for="contrasena">Contraseña</label>
                 <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
-                <br>
                 <div class="acciones">
                     <button type="submit" name="ingresar">Ingresar</button>
                     <br>
                     <p>¿Aún no te has registrado?</p>
-                    <a href="">Regístrate</a>
+                    <a href="{% url 'registro_usuarios' %}">Regístrate</a>
                 </div>
             </form>
         </div>

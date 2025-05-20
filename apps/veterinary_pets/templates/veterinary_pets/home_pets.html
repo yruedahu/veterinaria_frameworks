@@ -1,90 +1,117 @@
+{% extends 'veterinary_pets/base_pets.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinary Pets</title>
-    <link rel="stylesheet" href="{% static 'css/pets_style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="{% static 'images/logo.png' %}" alt="Veterinary Pets Logo">
+
+{% block title %}Veterinary Pets{% endblock %}
+
+{% block content %}
+<section id="hero">
+    <div class="hero-content">
+        <h1>¡Cuidamos a tus mascotas con amor y profesionalismo!</h1>
+        <p>Descubre nuestros servicios especializados para el bienestar de tu mejor amigo.</p>
+        <a href="/" class="btn">Ver Servicios</a>
+        <a href="{% url 'pet_detail' 1 %}" class="btn">Ver Detalle de Mascota</a>
+    </div>
+    <div class="hero-image">
+        <img src="{% static 'images/happy_animals.png' %}" alt="Mascotas felices">
+    </div>
+</section>
+
+<section id="about">
+    <h2>Sobre Nosotros</h2>
+    <p>Somos un equipo de veterinarios dedicados al cuidado integral de las mascotas.</p>
+</section>
+
+<section id="services">
+    <h2>Nuestros Servicios</h2>
+    <div class="services-container">
+        <div class="service-card">
+            <img src="{% static 'images/vacunation.png' %}" alt="Vacunación">
+            <h3>Vacunación</h3>
+            <p>Protege a tu mascota con nuestras vacunas certificadas.</p>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#about">Sobre Nosotros</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#gallery">Galería</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="hero">
-        <div class="hero-content">
-            <h1>¡Cuidamos a tus mascotas con amor y profesionalismo!</h1>
-            <p>Descubre nuestros servicios especializados para el bienestar de tu mejor amigo.</p>
-            <a href="/" class="btn">Ver Servicios</a>
+        <div class="service-card">
+            <img src="{% static 'images/doctor.png' %}" alt="Consulta Médica">
+            <h3>Consulta Médica</h3>
+            <p>Chequeos completos con veterinarios profesionales.</p>
         </div>
-        <div class="hero-image">
-            <img src="{% static 'images/happy_animals.png' %}" alt="Mascotas felices">
+        <div class="service-card">
+            <img src="{% static 'images/stetic.png' %}" alt="Estética">
+            <h3>Estética Canina</h3>
+            <p>Baño, corte de pelo y cuidado especial para tu mascota.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="about">
-        <h2>Sobre Nosotros</h2>
-        <p>Somos un equipo de veterinarios dedicados al cuidado integral de las mascotas.</p>
-    </section>
+<section id="gallery">
+    <h2>Galería de Mascotas</h2>
+    <div class="gallery-container">
+        <img src="{% static 'images/puppy.png' %}" alt="Perro feliz">
+        <img src="{% static 'images/blackCat.png' %}" alt="Gato relajado">
+    </div>
+</section>
 
-    <section id="services">
-        <h2>Nuestros Servicios</h2>
-        <div class="services-container">
-            <div class="service-card">
-                <img src="{% static 'images/vacunation.png' %}" alt="Vacunación">
-                <h3>Vacunación</h3>
-                <p>Protege a tu mascota con nuestras vacunas certificadas.</p>
-            </div>
-            <div class="service-card">
-                <img src="{% static 'images/doctor.png' %}" alt="Consulta Médica">
-                <h3>Consulta Médica</h3>
-                <p>Chequeos completos con veterinarios profesionales.</p>
-            </div>
-            <div class="service-card">
-                <img src="{% static 'images/stetic.png' %}" alt="Estética">
-                <h3>Estética Canina</h3>
-                <p>Baño, corte de pelo y cuidado especial para tu mascota.</p>
-            </div>
-        </div>
-    </section>
+<section id="contact" style="display: none;">
+    <h2>Contacto</h2>
+    <p>Email: contacto@veterinarypets.com</p>
+    <p>Teléfono: +123 456 789</p>
+    <form action="#" method="POST">
+        <input type="text" name="name" placeholder="Tu Nombre" required>
+        <input type="email" name="email" placeholder="Tu Email" required>
+        <textarea name="message" placeholder="Escribe tu mensaje" required></textarea>
+        <button type="submit" class="btn">Enviar</button>
+    </form>
+</section>
 
-    <section id="gallery">
-        <h2>Galería de Mascotas</h2>
-        <div class="gallery-container">
-            <img src="{% static 'images/galeria.png' %}" alt="Perro feliz">
-            <img src="{% static 'images/cat1.jpg' %}" alt="Gato relajado">
-            <img src="{% static 'images/dog2.jpg' %}" alt="Perro jugando">
-            <img src="{% static 'images/cat2.jpg' %}" alt="Gato curioso">
-        </div>
-    </section>
+<section id="create-pet" style="display: none;">
+    <h2>Registrar Mascota</h2>
+    <form action="{% url 'create_pet' %}" method="POST">
+        {% csrf_token %}
+        <h3>Información del Propietario</h3>
+        <input type="text" name="owner_name" placeholder="Nombre del Propietario" required>
+        <input type="text" name="owner_phone" placeholder="Teléfono" required>
+        <input type="email" name="owner_email" placeholder="Email">
+        <textarea name="owner_address" placeholder="Dirección"></textarea>
 
-    <section id="contact">
-        <h2>Contacto</h2>
-        <p>Email: contacto@veterinarypets.com</p>
-        <p>Teléfono: +123 456 789</p>
-        <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Tu Nombre" required>
-            <input type="email" name="email" placeholder="Tu Email" required>
-            <textarea name="message" placeholder="Escribe tu mensaje" required></textarea>
-            <button type="submit" class="btn">Enviar</button>
-        </form>
-    </section>
+        <h3>Información de la Mascota</h3>
+        <input type="text" name="pet_name" placeholder="Nombre de la Mascota" required>
+        <input type="text" name="pet_species" placeholder="Especie" required>
+        <input type="text" name="pet_breed" placeholder="Raza">
+        <input type="number" name="pet_age" placeholder="Edad" required>
+        <input type="date" name="pet_born_date" placeholder="Fecha de Nacimiento" required>
+        <input type="number" step="0.01" name="pet_weight" placeholder="Peso (kg)">
+        <label for="pet_vaccinated">¿Está vacunado?</label>
+        <label>
+            <input type="checkbox" name="pet_vaccinated"> 
+        </label>
 
-    <footer>
-        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+        <button type="submit" class="btn">Guardar</button>
+    </form>
+</section>
+
+<button id="show-register-form" class="btn">Registrar Mascota</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactLink = document.querySelector('a[href="#contact"]');
+        const contactSection = document.getElementById('contact');
+
+        contactLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            contactSection.style.display = contactSection.style.display === 'block' ? 'none' : 'block';
+            if (contactSection.style.display === 'block') {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        const registerButton = document.getElementById('show-register-form');
+        const registerSection = document.getElementById('create-pet');
+
+        registerButton.addEventListener('click', function() {
+            registerSection.style.display = registerSection.style.display === 'block' ? 'none' : 'block';
+            if (registerSection.style.display === 'block') {
+                registerSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+{% endblock %}

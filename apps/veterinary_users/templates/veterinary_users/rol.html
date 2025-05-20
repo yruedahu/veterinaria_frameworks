@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Rol</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="" id="linkIndex">Dashboard</a>
+        <h1>Crear perfil o rol</h1>
+    </header>
+    <main>
+        <div id="rol">
+            <form method="post" id="form_rol">
+                {% csrf_token %}
+                <label for="nombre">Nombre del rol:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Administrador, Veterinario" maxlength="100" required>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" placeholder="Descripción del rol" rows="4"></textarea>
+                <div class="acciones">
+                    <button type="submit">Crear perfil</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
