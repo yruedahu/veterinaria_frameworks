@@ -311,35 +311,46 @@ footer {
     color: #856404 !important;
 }
 
-/* --- TABLE STYLES --- */
+/* --- PRODUCT LIST TABLE ENHANCED --- */
 table.table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
     margin: 30px 0 0 0;
     overflow: hidden;
+    border: 1.5px solid #e0e0e0;
 }
 table.table th, table.table td {
-    padding: 16px 12px;
+    padding: 18px 14px;
     text-align: left;
     font-size: 1.08em;
+    border-right: 1.5px solid #e0e0e0;
 }
 table.table th {
-    background: #f7f7f7;
-    font-weight: 600;
-    color: #222;
+    background: linear-gradient(to right, #e3f6fd, #eafaf1);
+    font-weight: 700;
+    color: #2D9CDB;
+    border-bottom: 2.5px solid #2D9CDB;
 }
 table.table tr {
-    border-bottom: 1px solid #ececec;
+    border-bottom: 1.5px solid #ececec;
+    transition: background 0.2s;
 }
 table.table tr:last-child {
     border-bottom: none;
 }
 table.table td {
     vertical-align: middle;
+    background: #fff;
+}
+table.table tr:hover td {
+    background: #f3faff;
+}
+table.table th:last-child, table.table td:last-child {
+    border-right: none;
 }
 table.table td .btn {
     width: 100%;
@@ -348,6 +359,12 @@ table.table td .btn {
 }
 table.table td {
     min-width: 120px;
+}
+@media (max-width: 700px) {
+    table.table th, table.table td {
+        padding: 10px 4px;
+        font-size: 0.98em;
+    }
 }
 
 /* --- HERO HOME INVENTORY --- */
@@ -382,6 +399,121 @@ table.table td {
     border-radius: 18px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
+
+/* --- HERO HOME INVENTORY WIDE --- */
+.inventory-hero-wide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto 32px auto;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 40px 60px;
+    gap: 60px;
+}
+.inventory-hero-wide .inventory-hero-text {
+    text-align: left;
+    flex: 1 1 0;
+    padding: 0;
+}
+.inventory-hero-wide .inventory-hero-image {
+    flex: 0 0 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inventory-hero-wide .inventory-hero-image img {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* --- INVENTORY CAROUSEL SECTION WIDE --- */
+.inventory-carousel-section-wide {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 30px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 30px 0 40px 0;
+}
+
+/* --- HOME HERO & CAROUSEL FIXES --- */
+.inventory-hero-home-fix {
+    max-width: 98vw;
+    margin: 32px auto 24px auto;
+    padding: 32px 2vw;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.inventory-carousel-home-fix {
+    max-width: 98vw;
+    margin: 0 auto 24px auto;
+    padding: 24px 2vw 32px 2vw;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.inventory-carousel-section-wide .swiper {
+    width: 100%;
+    min-height: 320px;
+}
+.inventory-carousel-section-wide .swiper-slide {
+    background: #f8f8f8;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px 18px 18px 18px;
+    min-height: 280px;
+    max-width: 350px;
+    margin: 0 auto;
+}
+.inventory-carousel-section-wide .swiper-slide img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+.inventory-carousel-section-wide .swiper-slide h3 {
+    font-size: 1.25em;
+    color: #2D9CDB;
+    margin-bottom: 6px;
+}
+.inventory-carousel-section-wide .swiper-slide p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0;
+}
+.swiper-button-next, .swiper-button-prev {
+    color: #2D9CDB;
+    top: 50%;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1.2em;
+}
+.swiper-pagination-bullet {
+    background: #2D9CDB;
+    opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+    background: #F2C94C;
+    opacity: 1;
+}
 @media (max-width: 900px) {
     .inventory-hero {
         flex-direction: column;
@@ -390,6 +522,22 @@ table.table td {
     }
     .inventory-hero-image {
         flex: none;
+    }
+}
+
+@media (max-width: 1100px) {
+    .inventory-hero-wide, .inventory-carousel-section-wide {
+        max-width: 98vw;
+        padding: 20px 10px;
+        gap: 20px;
+    }
+    .inventory-hero-wide {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .inventory-hero-wide .inventory-hero-image {
+        flex: none;
+        margin: 0 auto;
     }
 }
 
@@ -404,5 +552,17 @@ table.table td {
     }
     .page-content {
         padding: 10px 2px;
+    }
+    .inventory-hero-home-fix, .inventory-carousel-home-fix {
+        padding: 10px 2vw;
+    }
+    .inventory-carousel-section-wide .swiper-slide {
+        min-height: 200px;
+        max-width: 95vw;
+        padding: 14px 4px 10px 4px;
+    }
+    .inventory-carousel-section-wide .swiper-slide img {
+        width: 80px;
+        height: 80px;
     }
 }

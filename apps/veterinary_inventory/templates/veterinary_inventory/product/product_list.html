@@ -2,11 +2,10 @@
 {% block content %}
 <h2>Lista de Productos</h2>
 <a href="{% url 'product_create' %}" class="btn">Agregar Producto</a>
-<form method="get" class="search-form">
-    <input type="text" name="q" placeholder="Buscar producto..." value="{{ request.GET.q }}">
-    <button type="submit">Buscar</button>
+<form method="get" class="search-form" id="product-search-form" autocomplete="off">
+    <input type="text" name="q" id="product-search-input" placeholder="Buscar producto..." value="{{ request.GET.q }}">
 </form>
-<table class="table">
+<table class="table" id="product-table">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -20,9 +19,9 @@
     <tbody>
         {% for product in products %}
         <tr {% if product.stock.is_low_stock %}class="low-stock"{% endif %}>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category.name }}</td>
-            <td>{{ product.supplier.name }}</td>
+            <td class="product-name">{{ product.name }}</td>
+            <td class="product-category">{{ product.category.name }}</td>
+            <td class="product-supplier">{{ product.supplier.name }}</td>
             <td>${{ product.price }}</td>
             <td>{{ product.stock.quantity }}</td>
             <td style="display: flex; flex-direction: column; gap: 8px;">
@@ -39,4 +38,28 @@
         {% endfor %}
     </tbody>
 </table>
+<script>
+const searchInput = document.getElementById('product-search-input');
+const table = document.getElementById('product-table');
+searchInput.addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const rows = table.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        const name = row.querySelector('.product-name')?.textContent.toLowerCase() || '';
+        const category = row.querySelector('.product-category')?.textContent.toLowerCase() || '';
+        const supplier = row.querySelector('.product-supplier')?.textContent.toLowerCase() || '';
+        const price = row.children[3]?.textContent.toLowerCase() || '';
+        if (
+            name.includes(filter) ||
+            category.includes(filter) ||
+            supplier.includes(filter) ||
+            price.includes(filter)
+        ) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
 {% endblock %}
