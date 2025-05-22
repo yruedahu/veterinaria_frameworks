@@ -62,9 +62,15 @@ main {
     text-align: left;
 }
 
-#login input, #registro input, #registro select, #cuenta_usuarios input, #actualizar input, 
-#actualizar select, #actualizar_contrasena input, #actualizar_contrasena select, #rol input, 
-#rol textarea, #editar_rol input, #editar_rol textarea {
+#login input, #registro input, #cuenta_usuarios input, #actualizar input, #actualizar_contrasena input, 
+#rol input, #rol textarea, #editar_rol input, #editar_rol textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

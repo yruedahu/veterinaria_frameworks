@@ -9,4 +9,5 @@ urlpatterns = [
     path('actualizarcontrasena/', views.actualizar_contrasena, name='actualizar_contrasena'),
     path('rol/', views.rol, name='rol'),
     path('editarrol/', views.editar_rol, name='editar_rol'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

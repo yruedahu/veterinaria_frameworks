@@ -21,3 +21,6 @@ def rol(request):
 
 def editar_rol(request):
     return render(request, 'veterinary_users/a_e_rol.html')
+
+def dashboard(request):
+    return render(request, 'veterinary_users/dashboard.html')

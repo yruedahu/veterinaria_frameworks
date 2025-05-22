@@ -1,0 +1,173 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    padding: 15px 50px;
+    color: white;
+    width: auto;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header a#linkIndex {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 1.8em;
+}
+
+main {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+}
+
+section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(45,156,219,0.07), 0 1.5px 5px rgba(111,207,151,0.07);
+    padding: 30px 25px;
+    min-width: 260px;
+    flex: 1 1 320px;
+    margin-bottom: 25px;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #2D9CDB;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#links li {
+    margin: 16px 0;
+}
+
+#links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+#links a:hover {
+    color: #6FCF97;
+    text-decoration: underline;
+}
+
+#perfil p {
+    text-align: left;
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+#perfil strong {
+    color: #2D9CDB;
+}
+
+#notificaciones ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#notificaciones li {
+    background: #eafaf1;
+    color: #219653;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 0.98em;
+}
+
+#notificaciones p {
+    color: #888;
+}
+
+#roles table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#roles th, #roles td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+#roles th {
+    background: #f2f8fd;
+    color: #2D9CDB;
+    font-weight: 600;
+}
+
+#roles tr:last-child td {
+    border-bottom: none;
+}
+
+#roles a {
+    color: #2D9CDB;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 5px;
+    transition: color 0.2s;
+}
+
+#roles a:hover {
+    color: #E0A60B;
+    text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+    .dashboard {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    section {
+        min-width: unset;
+    }
+}
+
+footer {
+    background: #6FCF97;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
