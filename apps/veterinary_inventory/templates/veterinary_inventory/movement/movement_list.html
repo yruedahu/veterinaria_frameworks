@@ -2,6 +2,8 @@
 {% block content %}
 <h2>Historial de Movimientos de Inventario</h2>
 <a href="{% url 'movement_create' %}" class="btn">Registrar Movimiento</a>
+<a href="{% url 'export_movements' 'xlsx' %}" class="btn">Exportar Excel</a>
+<a href="{% url 'export_movements' 'csv' %}" class="btn">Exportar CSV</a>
 <table class="table">
     <thead>
         <tr>

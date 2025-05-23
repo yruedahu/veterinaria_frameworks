@@ -3,6 +3,9 @@
 <h2>Lista de Productos</h2>
 <div class="product-list-header">
     <a href="{% url 'product_create' %}" class="btn btn-add-product">+ Agregar Producto</a>
+    <a href="{% url 'export_products' 'xlsx' %}" class="btn">Exportar Excel</a>
+    <a href="{% url 'export_products' 'csv' %}" class="btn">Exportar CSV</a>
+    <a href="{% url 'import_products' %}" class="btn">Importar Productos</a>
     <form method="get" class="search-form" id="product-search-form" autocomplete="off">
         <input type="text" name="q" id="product-search-input" placeholder="Buscar producto..." value="{{ request.GET.q }}">
     </form>

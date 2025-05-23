@@ -1,0 +1,47 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% load static %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom:32px;">Dashboard de Inventario</h2>
+<div class="dashboard-metrics" style="justify-content:center;">
+    <div class="metric-card">
+        <h3>Total Productos</h3>
+        <p>24</p>
+    </div>
+    <div class="metric-card">
+        <h3>Stock Total</h3>
+        <p>1,250</p>
+    </div>
+    <div class="metric-card">
+        <h3>Productos con Stock Bajo</h3>
+        <p>3</p>
+    </div>
+    <div class="metric-card">
+        <h3>Movimientos Recientes</h3>
+        <p>12</p>
+    </div>
+</div>
+<div class="dashboard-charts" style="justify-content:center;">
+    <div style="background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:24px; margin-right:32px;">
+        <h4 style="text-align:center; margin-bottom:12px;">Stock por Producto</h4>
+        <img src="https://quickchart.io/chart?c={type:'bar',data:{labels:['Vacuna','Alimento','Antipulgas','Juguete','Collar'],datasets:[{label:'Stock',data:[120,300,80,60,40],backgroundColor:'#2D9CDB'}]}}" alt="Stock Chart" style="max-width:320px;">
+    </div>
+    <div style="background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:24px;">
+        <h4 style="text-align:center; margin-bottom:12px;">Top Productos Vendidos</h4>
+        <img src="https://quickchart.io/chart?c={type:'pie',data:{labels:['Vacuna','Alimento','Antipulgas','Juguete','Collar'],datasets:[{data:[40,30,15,10,5],backgroundColor:['#2D9CDB','#F2C94C','#6FCF97','#EB5757','#9B51E0']}]} }" alt="Top Productos" style="max-width:220px;">
+    </div>
+</div>
+<div class="dashboard-actions" style="text-align:center; margin-top:32px;">
+    <a href="#" class="btn">Descargar Inventario (Excel)</a>
+    <a href="#" class="btn">Descargar Movimientos (Excel)</a>
+    <a href="#" class="btn">Descargar Alertas (Excel)</a>
+</div>
+<style>
+.dashboard-metrics {display: flex; gap: 24px; margin-bottom: 32px;}
+.metric-card {background: #fff; border-radius: 10px; padding: 18px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); text-align: center; min-width: 180px;}
+.dashboard-charts {display: flex; gap: 32px; margin-bottom: 32px;}
+.dashboard-actions .btn {margin: 0 8px;}
+@media (max-width: 900px) {
+  .dashboard-metrics, .dashboard-charts {flex-direction: column; align-items: center;}
+}
+</style>
+{% endblock %}

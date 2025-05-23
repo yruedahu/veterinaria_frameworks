@@ -2,6 +2,8 @@
 {% block content %}
 <h2>Lista de Proveedores</h2>
 <a href="{% url 'supplier_create' %}" class="btn">Agregar Proveedor</a>
+<a href="{% url 'export_suppliers' 'xlsx' %}" class="btn">Exportar Excel</a>
+<a href="{% url 'export_suppliers' 'csv' %}" class="btn">Exportar CSV</a>
 <table class="table">
     <thead>
         <tr>

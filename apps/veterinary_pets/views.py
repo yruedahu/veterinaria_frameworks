@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect  # Import necesario para redirección
 from django.contrib import messages  # Import necesario para mensajes flash
-from .models import Pet, Owner
+from .models import Pet, Owner, MedicalRecord, MedicalAttachment
+from django.core.files.storage import FileSystemStorage
 
 def pets_home(request):
     return render(request,'veterinary_pets/home_pets.html')
@@ -52,3 +53,37 @@ def create_pet(request):
         return HttpResponseRedirect('/')
 
     return render(request, 'veterinary_pets/home_pets.html')
+
+def medical_record_detail(request, pet_id):
+    pet = get_object_or_404(Pet, id=pet_id)
+    medical_record = getattr(pet, 'medical_record', None)
+    attachments = medical_record.attachments.all() if medical_record else []
+    return render(request, 'veterinary_pets/medical_record_detail.html', {
+        'pet': pet,
+        'medical_record': medical_record,
+        'attachments': attachments
+    })
+
+def medical_record_edit(request, pet_id):
+    pet = get_object_or_404(Pet, id=pet_id)
+    medical_record = getattr(pet, 'medical_record', None)
+    if request.method == 'POST':
+        notes = request.POST.get('notes', '')
+        allergies = request.POST.get('allergies', '')
+        chronic_conditions = request.POST.get('chronic_conditions', '')
+        if not medical_record:
+            medical_record = MedicalRecord.objects.create(pet=pet, notes=notes, allergies=allergies, chronic_conditions=chronic_conditions)
+        else:
+            medical_record.notes = notes
+            medical_record.allergies = allergies
+            medical_record.chronic_conditions = chronic_conditions
+            medical_record.save()
+        # Manejo de archivos adjuntos
+        for f in request.FILES.getlist('attachments'):
+            MedicalAttachment.objects.create(medical_record=medical_record, file=f)
+        messages.success(request, 'Historial médico actualizado.')
+        return HttpResponseRedirect(f'/pet/{pet.id}/medical_record/')
+    return render(request, 'veterinary_pets/medical_record_form.html', {
+        'pet': pet,
+        'medical_record': medical_record
+    })

@@ -1,0 +1,23 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Importar Productos desde Excel/CSV</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file">Selecciona un archivo Excel (.xlsx) o CSV:</label>
+    <input type="file" name="file" id="file" accept=".csv,.xlsx" required>
+    <button type="submit" class="btn">Importar</button>
+    <a href="{% url 'product_list' %}" class="btn">Cancelar</a>
+</form>
+<div style="margin-top:20px;">
+    <strong>Formato esperado:</strong>
+    <ul>
+        <li>Nombre (obligatorio)</li>
+        <li>Categoría</li>
+        <li>Proveedor</li>
+        <li>Descripción</li>
+        <li>Precio</li>
+        <li>Stock</li>
+        <li>Stock mínimo</li>
+    </ul>
+</div>
+{% endblock %}
