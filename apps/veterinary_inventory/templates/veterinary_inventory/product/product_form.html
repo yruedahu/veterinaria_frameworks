@@ -1,28 +1,109 @@
 {% extends 'veterinary_inventory/base.html' %}
 {% block content %}
 <h2>{% if product %}Editar{% else %}Agregar{% endif %} Producto</h2>
-<form method="post">
+<form method="post" class="product-form-box">
     {% csrf_token %}
     <label>Nombre:</label>
-    <input type="text" name="name" value="{{ product.name|default:'' }}" required><br>
+    <input type="text" name="name" value="{{ product.name|default:'' }}" required>
     <label>Categoría:</label>
     <select name="category" required>
         {% for cat in categories %}
         <option value="{{ cat.pk }}" {% if product.category.pk == cat.pk %}selected{% endif %}>{{ cat.name }}</option>
         {% endfor %}
-    </select><br>
+    </select>
     <label>Proveedor:</label>
     <select name="supplier">
         <option value="">Sin proveedor</option>
         {% for sup in suppliers %}
         <option value="{{ sup.pk }}" {% if product.supplier and product.supplier.pk == sup.pk %}selected{% endif %}>{{ sup.name }}</option>
         {% endfor %}
-    </select><br>
+    </select>
     <label>Descripción:</label>
-    <textarea name="description">{{ product.description|default:'' }}</textarea><br>
+    <textarea name="description" class="product-textarea">{{ product.description|default:'' }}</textarea>
     <label>Precio:</label>
-    <input type="number" step="0.01" name="price" value="{{ product.price|default:'' }}" required><br>
-    <button type="submit" class="btn">Guardar</button>
-    <a href="{% url 'product_list' %}" class="btn">Cancelar</a>
+    <input type="number" step="0.01" name="price" value="{{ product.price|default:'' }}" required>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-save">Guardar</button>
+        <a href="{% url 'product_list' %}" class="btn btn-cancel">Cancelar</a>
+    </div>
 </form>
 {% endblock %}
+
+<style>
+.product-form-box {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 36px 32px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.product-form-box label {
+    font-size: 1.13em;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.product-form-box input[type="text"],
+.product-form-box input[type="number"],
+.product-form-box select,
+.product-form-box textarea {
+    font-size: 1.08em;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1.5px solid #bdbdbd;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f8f8f8;
+    transition: border 0.2s;
+}
+.product-form-box input:focus,
+.product-form-box select:focus,
+.product-form-box textarea:focus {
+    border: 1.5px solid #2D9CDB;
+    outline: none;
+    background: #fff;
+}
+.product-form-box .product-textarea {
+    min-height: 80px;
+    max-height: 180px;
+    resize: vertical;
+    overflow-y: auto;
+}
+.form-actions {
+    display: flex;
+    gap: 18px;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+.btn-save {
+    background: linear-gradient(to right, #6FCF97, #2D9CDB);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 28px;
+    transition: background 0.2s, transform 0.2s;
+}
+.btn-save:hover {
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    color: #fff;
+    transform: scale(1.04);
+}
+.btn-cancel {
+    background: #f8f8f8;
+    color: #2D9CDB;
+    font-weight: 600;
+    border: 1.5px solid #2D9CDB;
+    border-radius: 6px;
+    padding: 12px 28px;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-cancel:hover {
+    background: #e3f6fd;
+    color: #2186b5;
+}
+</style>
