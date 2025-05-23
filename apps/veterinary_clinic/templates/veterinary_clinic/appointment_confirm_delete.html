@@ -1,0 +1,52 @@
+{% extends 'veterinary_clinic/base.html' %}
+{% load static %}
+
+{% block title %}Confirmar Eliminación de Cita{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/delete_confirm.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-header">
+        <h2>Confirmar Cancelación de Cita</h2>
+        <p>¿Estás seguro de que deseas cancelar la siguiente cita?</p>
+    </div>
+
+    <div class="appointment-info">
+        <div class="info-row">
+            <span class="info-label">Mascota:</span>
+            <span class="info-value">{{ object.pet_name }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Dueño:</span>
+            <span class="info-value">{{ object.owner_name }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Tipo de Cita:</span>
+            <span class="info-value">{{ object.get_appointment_type_display }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Fecha:</span>
+            <span class="info-value">{{ object.appointment_date }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Hora:</span>
+            <span class="info-value">{{ object.appointment_time }}</span>
+        </div>
+    </div>
+
+    <div class="delete-warning">
+        <strong>¡Atención!</strong> Esta acción no se puede deshacer.
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="action-buttons">
+            <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>
+        </div>
+    </form>
+</div>
+{% endblock %} 
