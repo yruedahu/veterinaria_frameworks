@@ -255,14 +255,16 @@ form button {
 
 /* --- FOOTER --- */
 footer {
-    background: #6FCF97;
-    color: white;
-    padding: 15px;
     text-align: center;
-    margin-top: 40px; 
+    background: linear-gradient(to right, #2D9CDB, #6FCF97);
+    color: white;
+    padding: 20px 0;
+    font-size: 1.1em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    position: relative;
-    bottom: auto;
+    z-index: 10;
 }
 
 /* Estilo para los mensajes flash */
@@ -289,4 +291,56 @@ footer {
 
 .message.error {
     background-color: #F44336;
+}
+
+.pet-detail {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 90px; /* Espacio para el header fijo */
+    padding-bottom: 40px; /* Espacio para el footer fijo */
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.pet-detail h2 {
+    margin-bottom: 18px;
+    font-size: 2.2em;
+    color: #2D9CDB;
+}
+
+.pet-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 18px auto;
+    text-align: left;
+    max-width: 400px;
+}
+
+.pet-detail ul li {
+    margin-bottom: 8px;
+    font-size: 1.13em;
+}
+
+.pet-detail nav {
+    margin-top: 18px;
+}
+
+.pet-detail-img {
+    width: 300px;
+    max-width: 90vw;
+    margin: 0 auto 18px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.pet-detail-img img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    object-fit: contain;
 }
