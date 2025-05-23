@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de gestión de citas veterinarias">
+    <meta name="theme-color" content="#2c3e50">
+    <title>{% block title %}Veterinaria PYTHON{% endblock %}</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'home_appointments' %}" class="logo">
+                Veterinaria PYTHON
+            </a>
+            <div class="nav-links">
+                <a href="{% url 'home_appointments' %}" {% if request.resolver_match.url_name == 'home_appointments' %}class="active"{% endif %}>
+                    Inicio
+                </a>
+                <a href="{% url 'appointment_list' %}" {% if request.resolver_match.url_name == 'appointment_list' %}class="active"{% endif %}>
+                    Citas
+                </a>
+                <a href="{% url 'create_appointment' %}" {% if request.resolver_match.url_name == 'create_appointment' %}class="active"{% endif %}>
+                    Nueva Cita
+                </a>
+                <a href="{% url 'appointment_calendar' %}" {% if request.resolver_match.url_name == 'appointment_calendar' %}class="active"{% endif %}>
+                    Calendario
+                </a>
+                <a href="{% url 'appointment_dashboard' %}" {% if request.resolver_match.url_name == 'appointment_dashboard' %}class="active"{% endif %}>
+                    Dashboard
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div>© {% now "Y" %} Veterinaria PYTHON. Todos los derechos reservados.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Ocultar/mostrar header al hacer scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        const scrollThreshold = 100;
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Marcar enlace activo
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

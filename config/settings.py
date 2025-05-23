@@ -66,12 +66,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'apps/veterinary_home/static'),
     os.path.join(BASE_DIR, 'apps/veterinary_pets/static'),
     os.path.join(BASE_DIR, 'apps/veterinary_inventory/static'),
+    os.path.join(BASE_DIR, 'apps/veterinary_clinic/static'),
 ]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'apps/veterinary_home/templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'apps/veterinary_home/templates'),
+            os.path.join(BASE_DIR, 'apps/veterinary_clinic/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

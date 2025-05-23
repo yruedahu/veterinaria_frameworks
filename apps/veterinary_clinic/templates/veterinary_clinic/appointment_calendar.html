@@ -1,0 +1,97 @@
+{% extends 'veterinary_clinic/base.html' %}
+{% load static %}
+
+{% block title %}Lista de Citas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="appointments-container">
+    <div class="appointments-header">
+        <h2 class="appointments-title">Calendario de Citas</h2>
+        <div class="appointments-actions">
+            <a href="{% url 'create_appointment' %}" class="btn btn-primary">Nueva Cita</a>
+            <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Ver Lista Detallada</a>
+        </div>
+    </div>
+
+    <div class="appointments-grid" id="appointmentsGrid">
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const appointmentsGrid = document.getElementById('appointmentsGrid');
+
+    fetch('{% url "appointment_calendar_events" %}')
+        .then(response => response.json())
+        .then(events => {
+            events.sort((a, b) => new Date(a.start) - new Date(b.start));
+            
+            events.forEach(event => {
+                const startDate = new Date(event.start);
+                const card = document.createElement('div');
+                card.className = `appointment-card status-${event.extendedProps.status.toLowerCase()}`;
+                
+                card.innerHTML = `
+                    <div class="appointment-header">
+                        <h3 class="appointment-title">${event.extendedProps.pet_name}</h3>
+                        <span class="appointment-time">
+                            ${startDate.toLocaleDateString('es-ES', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}
+                            <br>
+                            ${startDate.toLocaleTimeString('es-ES', {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })}
+                        </span>
+                    </div>
+                    <div class="appointment-details">
+                        <div class="appointment-detail">
+                            <span class="detail-label">Dueño:</span>
+                            <span class="detail-value">${event.extendedProps.owner_name}</span>
+                        </div>
+                        <div class="appointment-detail">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">${event.extendedProps.appointment_type}</span>
+                        </div>
+                        ${event.extendedProps.symptoms ? `
+                        <div class="appointment-detail">
+                            <span class="detail-label">Síntomas:</span>
+                            <span class="detail-value">${event.extendedProps.symptoms}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                    <div class="appointment-footer">
+                        <span class="appointment-status status-${event.extendedProps.status.toLowerCase()}">
+                            ${event.extendedProps.status}
+                        </span>
+                        <div class="appointment-actions">
+                            <a href="/clinic/${event.id}" class="btn btn-sm btn-info">Ver</a>
+                            <a href="/clinic/${event.id}/update" class="btn btn-sm btn-warning">Editar</a>
+                        </div>
+                    </div>
+                `;
+                
+                appointmentsGrid.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading appointments:', error);
+            appointmentsGrid.innerHTML = `
+                <div class="alert alert-danger">
+                    Error al cargar las citas. Por favor, intente nuevamente.
+                </div>
+            `;
+        });
+});
+</script>
+{% endblock %} 

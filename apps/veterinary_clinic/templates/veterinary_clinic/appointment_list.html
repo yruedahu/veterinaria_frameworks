@@ -1,0 +1,93 @@
+{% extends 'veterinary_clinic/base.html' %}
+{% load static %}
+
+{% block title %}Lista de Citas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/appointment_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="appointment-list-container">
+    <div class="filters-section">
+        <form method="get" class="filters-grid">
+            {% for field in filter_form %}
+            <div class="filter-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <div class="filter-actions">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+                <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Limpiar</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="appointments-table">
+        {% if appointments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Mascota</th>
+                    <th>Dueño</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.pet_name }}</td>
+                    <td>{{ appointment.owner_name }}</td>
+                    <td>{{ appointment.get_appointment_type_display }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.appointment_time }}</td>
+                    <td>
+                        <span class="status-badge status-{{ appointment.status|lower }}">
+                            {{ appointment.get_status_display }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="{% url 'appointment_detail' appointment.pk %}" class="btn btn-sm btn-info">Ver</a>
+                            {% if appointment.can_be_edited %}
+                            <a href="{% url 'appointment_update' appointment.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                            {% endif %}
+                            {% if appointment.can_be_cancelled %}
+                            <a href="{% url 'appointment_delete' appointment.pk %}" class="btn btn-sm btn-danger">Cancelar</a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-appointments">
+            <h3>No hay citas que mostrar</h3>
+            <p>¿Deseas <a href="{% url 'create_appointment' %}">agendar una nueva cita</a>?</p>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.date_from %}&date_from={{ request.GET.date_from }}{% endif %}{% if request.GET.date_to %}&date_to={{ request.GET.date_to }}{% endif %}" class="btn">&laquo; Anterior</a>
+        {% endif %}
+
+        <span class="btn current-page">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.date_from %}&date_from={{ request.GET.date_from }}{% endif %}{% if request.GET.date_to %}&date_to={{ request.GET.date_to }}{% endif %}" class="btn">Siguiente &raquo;</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

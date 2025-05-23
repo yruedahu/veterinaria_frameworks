@@ -1,0 +1,239 @@
+/* Estilos generales */
+.appointment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.appointment-text {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.appointment-text h2 {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.appointment-text p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.appointment-image {
+    flex: 1;
+    text-align: center;
+}
+
+.appointment-image img {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Sección de servicios */
+.services {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+}
+
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.service-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.service-card img {
+    width: 80px; /* Tamaño reducido de los iconos */
+    height: 80px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.1);
+}
+
+.service-card h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.service-card p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.service-card .btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #4e73df;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.service-card .btn:hover {
+    background-color: #2e59d9;
+}
+
+/* Sección de información */
+.appointment-info {
+    background: #f8f9fa;
+    padding: 3rem 1rem;
+    margin-top: 2rem;
+}
+
+.appointment-info h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+}
+
+.info-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.info-card h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.info-card p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Botón principal */
+.btn-primary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #4e73df;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(78, 115, 223, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #2e59d9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(78, 115, 223, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .appointment {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .appointment-text {
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .appointment-image img {
+        max-width: 250px;
+    }
+
+    .service-card img {
+        width: 60px; /* Iconos aún más pequeños en móvil */
+        height: 60px;
+    }
+
+    .services h2,
+    .appointment-info h2 {
+        font-size: 1.8rem;
+    }
+
+    .appointment-text h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.service-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.4s;
+} 
