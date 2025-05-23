@@ -70,6 +70,25 @@ nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    font-size: 1.18em;
+    padding: 8px 18px;
+}
+
+nav ul li a.btn {
+    background: #F2C94C;
+    color: #333;
+    padding: 12px 24px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+nav ul li a.btn:hover {
+    background: #E0A60B;
+    transform: scale(1.05);
 }
 
 /* --- HERO SECTION --- */

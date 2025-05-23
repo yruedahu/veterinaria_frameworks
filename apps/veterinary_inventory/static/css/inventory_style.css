@@ -43,6 +43,12 @@ nav ul li a:hover {
     color: #F2C94C;
 }
 
+nav ul li a, nav ul li a.btn {
+    font-size: 1.18em;
+    padding: 8px 18px;
+    font-weight: 800;
+}
+
 /* --- HERO SECTION --- */
 .hero {
     display: flex;

@@ -33,12 +33,12 @@ nav ul {
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    transition: color 0.3s;
     font-size: 1.18em;
     padding: 8px 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
 }
 
 nav ul li a:hover {
@@ -47,7 +47,7 @@ nav ul li a:hover {
 
 nav ul li a.btn {
     font-size: 1.18em;
-    padding: 3px 3px;
+    padding: 8px 18px;
     font-weight: 800;
 }
 
