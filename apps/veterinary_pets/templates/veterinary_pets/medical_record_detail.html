@@ -1,0 +1,20 @@
+{% extends 'veterinary_pets/base_pets.html' %}
+{% block content %}
+<h2>Historial Médico de {{ pet.name }}</h2>
+<ul>
+    <li><strong>Notas generales:</strong> {{ medical_record.notes }}</li>
+    <li><strong>Alergias:</strong> {{ medical_record.allergies }}</li>
+    <li><strong>Condiciones crónicas:</strong> {{ medical_record.chronic_conditions }}</li>
+    <li><strong>Última actualización:</strong> {{ medical_record.last_updated|date:"d/m/Y H:i" }}</li>
+</ul>
+{% if attachments %}
+<h3>Archivos adjuntos</h3>
+<ul>
+    {% for file in attachments %}
+    <li><a href="{{ file.file.url }}" target="_blank">{{ file.file.name|cut:'medical_attachments/' }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="{% url 'medical_record_edit' pet.id %}" class="btn">Editar Historial</a>
+<a href="{% url 'pet_detail' pet.id %}" class="btn">Volver</a>
+{% endblock %}

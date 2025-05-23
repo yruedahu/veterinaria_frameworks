@@ -1,0 +1,94 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% load static %}
+{% block content %}
+<h2 class="product-detail-title">Detalle de Producto</h2>
+<div class="product-detail-box product-detail-box-big">
+    <div class="product-detail-info">
+        <p><span class="product-label">Nombre:</span> <span class="product-value">{{ product.name }}</span></p>
+        <p><span class="product-label">Categoría:</span> <span class="product-value">{{ product.category.name }}</span></p>
+        <p><span class="product-label">Proveedor:</span> <span class="product-value">{{ product.supplier.name }}</span></p>
+        <p><span class="product-label">Precio:</span> <span class="product-value">${{ product.price }}</span></p>
+        <p><span class="product-label">Descripción:</span> <span class="product-value">{{ product.description }}</span></p>
+        <p><span class="product-label">Stock:</span> <span class="product-value">{{ product.stock.quantity }}</span></p>
+    </div>
+    <div class="product-detail-img">
+        <img src="{% static 'images/medicines.png' %}" alt="Medicamentos">
+    </div>
+    <div class="product-detail-actions">
+        {% if prev_product %}
+            <a href="{% url 'product_detail' prev_product.pk %}" class="btn">&larr; Anterior</a>
+        {% endif %}
+        <a href="{% url 'product_list' %}" class="btn">Volver a productos</a>
+        {% if next_product %}
+            <a href="{% url 'product_detail' next_product.pk %}" class="btn">Siguiente &rarr;</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+<style>
+.product-detail-title {
+    text-align: center;
+    font-size: 5em;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+.product-detail-box-big {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+    padding: 40px 40px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+.product-detail-info {
+    width: 100%;
+    margin-bottom: 18px;
+}
+.product-label {
+    font-size: 5em;
+    font-weight: 600;
+    color: #2D9CDB;
+    display: inline-block;
+    min-width: 120px;
+}
+.product-value {
+    font-size: 1.18em;
+    color: #222;
+    font-weight: 500;
+}
+.product-detail-img {
+    width: 180px;
+    margin: 18px auto 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.product-detail-img img {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.product-detail-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 24px;
+}
+@media (max-width: 700px) {
+    .product-detail-box-big {
+        padding: 18px 4vw 18px 4vw;
+    }
+    .product-detail-img {
+        width: 100px;
+    }
+    .product-label, .product-value {
+        font-size: 1em;
+    }
+}
+</style>

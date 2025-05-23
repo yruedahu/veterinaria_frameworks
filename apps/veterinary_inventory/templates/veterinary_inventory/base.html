@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    {# <link rel="stylesheet" href="{% static 'css/product_detail.css' %}"> #}
     {% endblock %}
 </head>
 
@@ -19,9 +19,11 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Inventario</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="{% url 'inventory_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'product_list' %}">Productos</a></li>
+                <li><a href="{% url 'supplier_list' %}">Proveedores</a></li>
+                <li><a href="{% url 'category_list' %}">Categorías</a></li>
+                <li><a href="{% url 'movement_list' %}">Movimientos</a></li>
             </ul>
         </nav>
     </header>

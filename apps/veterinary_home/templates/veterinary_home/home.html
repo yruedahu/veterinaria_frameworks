@@ -15,7 +15,9 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="#">Servicios</a></li>
+                <li><a href="{% url 'home_appointments' %}">Clinica</a></li>
+                <li><a href="#">Facturacion</a></li>
+                <li><a href="#">Usuarios</a></li>
                 <li><a href="{% url 'home_pets' %}" class="btn">Mascotas</a></li>
                 <li><a href="{% url 'home_inventory' %}" class="btn">Inventario</a></li>
             </ul>
@@ -26,7 +28,7 @@
         <div class="hero-text">
             <h2>Cuidamos a tus Mascotas</h2>
             <p>Atención médica y cariño para tus amigos peludos.</p>
-            <a href="#" class="btn">Ver Servicios</a>
+            <a href="{% url 'home_appointments' %}" class="btn">Ver Servicios</a>
         </div>
         <div class="hero-image">
             <img src="{% static 'images/veterinary.png' %}" alt="Mascota feliz">

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Veterinary Pets</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{% url 'home_users' %}" id="linkIndex">Salir</a>
+        <h1>Dashboard</h1>
+    </header>
+    <main>
+        <h1>Bienvenido, {{ user_account.username }}</h1>
+        <div class="dashboard">
+            <section id="links">
+                <h2>Accesos rápidos</h2>
+                <ul>
+                    <li><a href="{% url 'actualizar_usuarios' usuario.id %}">Actualizar datos usuario</a></li>
+                    <li><a href="{% url 'actualizar_contrasena' user_account.id %}">Actualizar contraseña</a></li>
+                    <li><a href="{% url 'rol' user_account.id %}">Crear rol</a></li>
+                </ul>
+            </section>
+
+            <section id="perfil">
+                <h2>Mi perfil</h2>
+                {% if perfil %}
+                    <p><strong>Nombre completo:</strong> {{ usuario.nombres }} {{ usuario.apellidos }}</p>
+                    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+                    <p><strong>Rol:</strong> {{ perfil.nombre }}</p>
+                    <p><strong>Descripción del rol:</strong> {{ perfil.descripcion }}</p>
+                {% else %}
+                    <p>No tienes un perfil asignado.</p>
+                {% endif %}
+            </section>
+
+            <section id="notificaciones">
+                <h2>Notificaciones</h2>
+                {% if notificaciones %}
+                    <ul>
+                        {% for notificacion in notificaciones %}
+                            <li><p>{{ notificacion.titulo }}:</p> {{ notificacion.mensaje }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No tienes notificaciones nuevas.</p>
+                {% endif %}
+            </section>
+
+            <section id="roles">
+                <h2>Roles del sistema</h2>
+                {% if roles %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rol in roles %}
+                            <tr>
+                                <td>{{ rol.nombre }}</td>
+                                <td>{{ rol.descripcion }}</td>
+                                <td>
+                                    <a href="{% url 'editar_rol' rol.id user_account.id %}">Editar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No hay roles registrados.</p>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

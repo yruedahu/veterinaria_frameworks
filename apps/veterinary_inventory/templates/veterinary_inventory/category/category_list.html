@@ -1,0 +1,29 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Lista de Categorías</h2>
+<a href="{% url 'category_create' %}" class="btn">Agregar Categoría</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>
+                <a href="{% url 'category_edit' category.pk %}" class="btn btn-sm">Editar</a>
+                <a href="{% url 'category_delete' category.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No hay categorías.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'home_inventory' %}" class="btn">Volver al inventario</a>
+{% endblock %}

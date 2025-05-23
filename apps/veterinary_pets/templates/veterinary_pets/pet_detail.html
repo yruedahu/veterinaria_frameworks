@@ -6,6 +6,9 @@
 {% block content %}
 <main class="pet-detail">
     <h2>{{ pet.name }}</h2>
+    <div class="pet-detail-img">
+        <img src="{% static 'images/pet' %}{{ pet.id }}.png" alt="Mascota {{ pet.name }}" />
+    </div>
     <ul>
         <li><strong>Especie:</strong> {{ pet.species }}</li>
         <li><strong>Raza:</strong> {{ pet.breed }}</li>
@@ -25,6 +28,23 @@
         {% if next_pet %}
             <a href="{% url 'pet_detail' next_pet.id %}" class="btn">Siguiente</a>
         {% endif %}
+        <a href="{% url 'medical_record_detail' pet.id %}" class="btn">Ver Historial Médico</a>
     </nav>
 </main>
 {% endblock %}
+
+<style>
+.pet-detail-img {
+    width: 200px;
+    margin: 0 auto 18px auto;
+    display: flex;
+    justify-content: center;
+}
+.pet-detail-img img {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    object-fit: cover;
+}
+</style>

@@ -1,0 +1,96 @@
+{% extends 'veterinary_clinic/base.html' %}
+{% load static %}
+
+{% block title %}Detalles de la Cita{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/appointment_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <div class="detail-card">
+        <div class="detail-header">
+            <h2>Cita #{{ appointment.id }}</h2>
+            <span class="appointment-status status-{{ appointment.status|lower }}">
+                {{ appointment.get_status_display }}
+            </span>
+        </div>
+
+        <div class="detail-body">
+            <div class="detail-section">
+                <h3 class="section-title">Información de la Mascota</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nombre de la Mascota</span>
+                        <span class="info-value">{{ appointment.pet_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tipo de Cita</span>
+                        <span class="info-value">{{ appointment.get_appointment_type_display }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3 class="section-title">Información del Propietario</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nombre</span>
+                        <span class="info-value">{{ appointment.owner_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Teléfono</span>
+                        <span class="info-value">{{ appointment.owner_phone }}</span>
+                    </div>
+                    <div class="info-item full-width">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">{{ appointment.owner_email }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3 class="section-title">Detalles de la Cita</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Fecha</span>
+                        <span class="info-value">{{ appointment.appointment_date }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Hora</span>
+                        <span class="info-value">{{ appointment.appointment_time }}</span>
+                    </div>
+                    {% if appointment.symptoms %}
+                    <div class="info-item full-width">
+                        <span class="info-label">Síntomas</span>
+                        <div class="text-content">{{ appointment.symptoms }}</div>
+                    </div>
+                    {% endif %}
+                    {% if appointment.notes %}
+                    <div class="info-item full-width">
+                        <span class="info-label">Notas Adicionales</span>
+                        <div class="text-content">{{ appointment.notes }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Volver a la Lista</a>
+                {% if appointment.can_be_edited %}
+                <a href="{% url 'appointment_update' appointment.pk %}" class="btn btn-warning">Editar Cita</a>
+                {% endif %}
+                {% if appointment.can_be_cancelled %}
+                <a href="{% url 'appointment_delete' appointment.pk %}" class="btn btn-danger">Cancelar Cita</a>
+                {% endif %}
+            </div>
+
+            <div class="timestamps">
+                <div>Creada: {{ appointment.created_at }}</div>
+                <div>Última actualización: {{ appointment.updated_at }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,155 @@
+{% extends 'veterinary_clinic/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard de Citas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Estadísticas Generales -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">{{ total_appointments }}</div>
+            <div class="stat-label">Total de Citas</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ pending_appointments }}</div>
+            <div class="stat-label">Citas Pendientes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ today_appointments }}</div>
+            <div class="stat-label">Citas Hoy</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ week_appointments }}</div>
+            <div class="stat-label">Citas esta Semana</div>
+        </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3 class="chart-title">Citas por Tipo</h3>
+            </div>
+            <div class="chart-container">
+                <canvas id="appointmentsByTypeChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3 class="chart-title">Estado de Citas</h3>
+            </div>
+            <div class="chart-container">
+                <canvas id="appointmentsByStatusChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Citas Recientes -->
+    <div class="recent-appointments">
+        <div class="recent-header">
+            <h3 class="recent-title">Próximas Citas</h3>
+            <a href="{% url 'appointment_list' %}" class="btn btn-sm btn-primary">Ver Todas</a>
+        </div>
+        {% if recent_appointments %}
+        <table class="appointment-list">
+            <thead>
+                <tr>
+                    <th>Mascota</th>
+                    <th>Dueño</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in recent_appointments %}
+                <tr>
+                    <td>{{ appointment.pet_name }}</td>
+                    <td>{{ appointment.owner_name }}</td>
+                    <td>{{ appointment.get_appointment_type_display }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.appointment_time }}</td>
+                    <td>
+                        <span class="status-badge status-{{ appointment.status|lower }}">
+                            {{ appointment.get_status_display }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-center text-muted">No hay citas próximas</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Datos para el gráfico de tipos de cita
+    const appointmentsByType = {{ appointments_by_type|safe }};
+    new Chart(document.getElementById('appointmentsByTypeChart'), {
+        type: 'doughnut',
+        data: {
+            labels: appointmentsByType.map(item => item.appointment_type),
+            datasets: [{
+                data: appointmentsByType.map(item => item.count),
+                backgroundColor: [
+                    '#4e73df',
+                    '#1cc88a',
+                    '#36b9cc',
+                    '#f6c23e',
+                    '#e74a3b',
+                    '#858796'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Datos para el gráfico de estados
+    const appointmentsByStatus = {{ appointments_by_status|safe }};
+    new Chart(document.getElementById('appointmentsByStatusChart'), {
+        type: 'doughnut',
+        data: {
+            labels: appointmentsByStatus.map(item => item.status),
+            datasets: [{
+                data: appointmentsByStatus.map(item => item.count),
+                backgroundColor: [
+                    '#ffc107', // Pendiente
+                    '#17a2b8', // Confirmada
+                    '#28a745', // Completada
+                    '#dc3545'  // Cancelada
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %} 

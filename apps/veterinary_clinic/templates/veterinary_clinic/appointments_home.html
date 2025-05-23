@@ -1,0 +1,63 @@
+{% extends 'veterinary_clinic/base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Veterinaria PYTHON{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="appointment">
+    <div class="appointment-text">
+        <h2>Gestión de Citas Veterinarias</h2>
+        <p>Agenda una cita para tu mascota de manera fácil y rápida. Nuestro equipo de profesionales está listo para brindar la mejor atención.</p>
+        <a href="{% url 'create_appointment' %}" class="btn-primary">Agendar Cita</a>
+    </div>
+    <div class="appointment-image">
+        <img src="{% static 'images/calendar.png' %}" alt="Calendario de citas">
+    </div>
+</section>
+
+<section class="services">
+    <h2>Nuestros Servicios</h2>
+    <div class="service-container">
+        <div class="service-card">
+            <img src="{% static 'images/appointment.png' %}" alt="Consulta General">
+            <h3>Consulta General</h3>
+            <p>Atención médica completa y chequeo rutinario para mantener la salud de tu mascota.</p>
+            <a href="{% url 'create_appointment' %}?type=general" class="btn">Reservar</a>
+        </div>
+        <div class="service-card">
+            <img src="{% static 'images/emergency.png' %}" alt="Emergencias">
+            <h3>Emergencias</h3>
+            <p>Atención inmediata 24/7 para casos urgentes que requieran cuidado veterinario.</p>
+            <a href="{% url 'create_appointment' %}?type=emergency" class="btn">Contactar</a>
+        </div>
+        <div class="service-card">
+            <img src="{% static 'images/grooming.png' %}" alt="Estética">
+            <h3>Estética y Spa</h3>
+            <p>Servicios profesionales de peluquería y cuidado estético para tu mascota.</p>
+            <a href="{% url 'create_appointment' %}?type=grooming" class="btn">Agendar</a>
+        </div>
+    </div>
+</section>
+
+<section class="appointment-info">
+    <h2>Información de Atención</h2>
+    <div class="info-container">
+        <div class="info-card">
+            <h3>Horario de Atención</h3>
+            <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+            <p>Sábados: 9:00 AM - 2:00 PM</p>
+            <p>Emergencias: 24/7</p>
+        </div>
+        <div class="info-card">
+            <h3>Contacto Directo</h3>
+            <p>Teléfono: (123) 456-7890</p>
+            <p>WhatsApp: +1 234-567-8900</p>
+            <p>Email: citas@veterinariapython.com</p>
+        </div>
+    </div>
+</section>
+{% endblock %} 

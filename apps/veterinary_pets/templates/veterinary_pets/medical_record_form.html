@@ -1,0 +1,17 @@
+{% extends 'veterinary_pets/base_pets.html' %}
+{% block content %}
+<h2>Registrar/Editar Historial Médico</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="notes">Notas generales:</label>
+    <textarea name="notes" id="notes" required>{{ medical_record.notes|default_if_none:'' }}</textarea>
+    <label for="allergies">Alergias:</label>
+    <textarea name="allergies" id="allergies">{{ medical_record.allergies|default_if_none:'' }}</textarea>
+    <label for="chronic_conditions">Condiciones crónicas:</label>
+    <textarea name="chronic_conditions" id="chronic_conditions">{{ medical_record.chronic_conditions|default_if_none:'' }}</textarea>
+    <label for="attachments">Adjuntar archivos (exámenes, radiografías, etc):</label>
+    <input type="file" name="attachments" id="attachments" multiple>
+    <button type="submit" class="btn">Guardar</button>
+    <a href="{% url 'pet_detail' pet.id %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}

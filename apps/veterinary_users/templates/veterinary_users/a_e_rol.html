@@ -11,8 +11,8 @@
 </head>
 <body>
     <header>
-        <a href="" id="linkDashboard">Dashboard</a>
-        <h1>Editar o eliminar perfil/rol</h1>
+        <a href="{% url 'dashboard' useraccount_id %}" id="linkDashboard">Dashboard</a>
+        <h1>Editar o eliminar rol</h1>
     </header>
     <main>
         <div id="editar_rol">
@@ -23,7 +23,7 @@
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion" rows="4">{{ perfil.descripcion }}</textarea>
                 <div class="acciones">
-                    <button type="submit" name="accion" value="actualizar">Guardar cambios</button>
+                    <button type="submit" name="accion" value="actualizar">Actualizar Rol</button>
                 </div>
             </form>
             <hr>
