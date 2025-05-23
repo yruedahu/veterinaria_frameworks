@@ -4,10 +4,12 @@ from .models import Product, Category, Supplier, Stock, Transaction
 from django.urls import reverse
 from django.db.models import F
 from django.utils import timezone
-import pandas as pd
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+import pandas as pd
+import json
+from django.db.models import Sum, Count
 import io
+from django.views.decorators.csrf import csrf_exempt
 
 def inventory_home(request):
     return render(request, 'veterinary_inventory/inventory_home.html')
@@ -297,3 +299,58 @@ def export_suppliers(request, filetype):
             df.to_excel(b, index=False)
             response.write(b.getvalue())
     return response
+
+def inventory_dashboard(request):
+    total_products = Product.objects.count()
+    total_stock = Stock.objects.aggregate(total=Sum('quantity'))['total'] or 0
+    low_stock_count = Stock.objects.filter(quantity__lte=F('min_stock')).count()
+    recent_movements_count = Transaction.objects.filter(date__gte=timezone.now()-timezone.timedelta(days=7)).count()
+
+    # Stock por producto
+    stock_qs = Stock.objects.select_related('product').all()
+    stock_data = {
+        'labels': [s.product.name for s in stock_qs],
+        'values': [s.quantity for s in stock_qs],
+    }
+    # Top 5 productos más vendidos (por cantidad de salidas)
+    top_qs = (Transaction.objects.filter(transaction_type='OUT')
+        .values('product__name')
+        .annotate(total=Sum('quantity'))
+        .order_by('-total')[:5])
+    top_products_data = {
+        'labels': [t['product__name'] for t in top_qs],
+        'values': [t['total'] for t in top_qs],
+    }
+    context = {
+        'total_products': total_products,
+        'total_stock': total_stock,
+        'low_stock_count': low_stock_count,
+        'recent_movements_count': recent_movements_count,
+        'stock_data': json.dumps(stock_data),
+        'top_products_data': json.dumps(top_products_data),
+    }
+    return render(request, 'veterinary_inventory/dashboard.html', context)
+
+def export_stock_alerts(request, format):
+    qs = Stock.objects.filter(quantity__lte=F('min_stock')).select_related('product')
+    data = [
+        {
+            'Producto': s.product.name,
+            'Cantidad en stock': s.quantity,
+            'Stock mínimo': s.min_stock,
+        } for s in qs
+    ]
+    if format == 'xlsx':
+        df = pd.DataFrame(data)
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename=alertas_stock.xlsx'
+        df.to_excel(response, index=False)
+        return response
+    elif format == 'csv':
+        df = pd.DataFrame(data)
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=alertas_stock.csv'
+        df.to_csv(response, index=False)
+        return response
+    else:
+        return HttpResponse('Formato no soportado', status=400)

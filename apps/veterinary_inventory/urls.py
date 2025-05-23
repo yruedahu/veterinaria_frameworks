@@ -23,4 +23,6 @@ urlpatterns = [
     path('movements/', views.movement_list, name='movement_list'),
     path('movements/create/', views.movement_create, name='movement_create'),
     path('movements/export/<str:filetype>/', views.export_movements, name='export_movements'),
+    path('dashboard/', views.inventory_dashboard, name='inventory_dashboard'),
+    path('export/stock-alerts/<str:format>/', views.export_stock_alerts, name='export_stock_alerts'),
 ]
