@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles_crud.css' %}">
+
+<h1>Lista de Clientes</h1>
+
+<a href="{% url 'client_create' %}" class="btn">Agregar nuevo cliente</a>
+
+<ul class="client-list">
+    {% for client in clients %}
+        <li>
+            <strong>{{ client.name   }}</strong>  {{   client.phone   }} /  {{   client.email   }} /  {{   client.address   }}
+            <a href="{% url 'client_update' client.pk %}" class="btn-edit">Editar</a>
+            <a href="{% url 'client_delete' client.pk %}" class="btn-delete">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay clientes registrados.</li>
+    {% endfor %}
+</ul>

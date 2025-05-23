@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Factura Generada</title>
+    <link rel="stylesheet" href="{% static 'css/styles_factura.css' %}">
+</head>
+<body>
+<div class="invoice-container">
+    <h2>Factura</h2>
+    <h3>Cliente</h3>
+    <p><strong>Nombre:</strong> {{ cliente_nombre }}</p>
+    <p><strong>Teléfono:</strong> {{ cliente_telefono }}</p>
+    <p><strong>Dirección:</strong> {{ cliente_direccion }}</p>
+    <p><strong>Email:</strong> {{ cliente_email }}</p>
+    <h3>Mascota</h3>
+    <p><strong>Nombre:</strong> {{ mascota_nombre }}</p>
+    <p><strong>Especie:</strong> {{ mascota_especie }}</p>
+    <p><strong>Raza:</strong> {{ mascota_raza }}</p>
+    <p><strong>Edad:</strong> {{ mascota_edad }}</p>
+    <h3>Servicios</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ servicio_descripcion }}</td>
+                <td>{{ servicio_cantidad }}</td>
+                <td>${{ servicio_precio }}</td>
+                <td>${{ subtotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Totales</h3>
+    <p><strong>Subtotal:</strong> ${{ subtotal }}</p>
+    <p><strong>IVA (19%):</strong> ${{ iva }}</p>
+    <p><strong>Total a pagar:</strong> ${{ total }}</p>
+
+    <div class="invoice-actions" style="margin-top: 2em; text-align: center;">
+        <button type="button" onclick="window.print()" class="btn btn-print">Imprimir</button>
+        <button type="button" onclick="guardarFactura()" class="btn btn-save">Guardar</button>
+    </div>
+</div>
+
+<script>
+function guardarFactura() {
+    alert();
+}
+</script>
+</body>
+</html>

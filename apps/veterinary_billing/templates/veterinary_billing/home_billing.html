@@ -18,8 +18,8 @@
         </div>
         <nav>
             <ul>
-               <li><a href="#about">Sobre Nosotros</a></li>
-                <li><a href="#services">Servicios</a></li>
+                <li><a href="{% url 'home' %}">Sobre Nosotros</a></li>
+                <li><a href="{% url 'home_pets' %}">Servicios</a></li>
                 <li><a href="#gallery">Galería</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
@@ -38,78 +38,87 @@
                 <h3>Factura #<span id="invoice-number">0001</span></h3>
                 <p>Fecha: <input type="date" id="invoice-date"></p>
             </div>
-        </div>
-
-        <div class="invoice-form">
-            <h3>Información del Cliente</h3>
-            <label>Nombre del Dueño:</label>
-            <input type="text" placeholder="Nombre completo">
-            
-            <label>Teléfono:</label>
-            <input type="text" placeholder="Teléfono de contacto">
-            
-            <label>Dirección:</label>
-            <input type="text" placeholder="Dirección del cliente">
-
-            <label>Email Cliente:</label>
-            <input type="text" placeholder="Correo electronico">
-
-            <h3>Información de la Mascota</h3>
-            <label>Nombre de la Mascota:</label>
-            <input type="text" placeholder="Nombre de la mascota">
-            
-            <label>Especie:</label>
-            <select>
-                <option>Perro</option>
-                <option>Gato</option>
-                <option>Ave</option>
-                <option>Otro</option>
-            </select>
-
-            <label>Raza:</label>
-            <input type="text" placeholder="Raza de la mascota">
-            
-            <label>Edad:</label>
-            <input type="number" min="0" placeholder="Edad en años">
-|        </div>
-
-        <div class="invoice-details">
-            <h3>Servicios Prestados</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Descripción</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" placeholder="Consulta, Vacuna, Cirugía, etc."></td>
-                        <td><input type="number" min="1" value="1"></td>
-                        <td><input type="number" step="0.01"></td>
-                        <td><span class="total-price">0.00</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="invoice-summary">
-            <p>Subtotal: <span id="subtotal">0.00</span></p>
-            <p>IVA (19%): <span id="tax">0.00</span></p>
-            <p><strong>Total a Pagar:</strong> <span id="total">0.00</span></p>
-        </div>
-
-        <div class="invoice-buttons">
-            <button class="generate">Generar Factura</button>
-            <button class="save">Guardar Factura</button>
-            <button class="print">Imprimir</button>
-        </div>
     </div>
 
+<form method="post" action="{% url 'generar_factura' %}">
+    {% csrf_token %}
+
+    <div class="invoice-form">
+        <h3>Información del Cliente</h3>
+        <label for="cliente_nombre">Nombre del Dueño:</label>
+        <input type="text" id="cliente_nombre" name="cliente_nombre" placeholder="Nombre completo" required>
+
+        <label for="cliente_telefono">Teléfono:</label>
+        <input type="text" id="cliente_telefono" name="cliente_telefono" placeholder="Teléfono de contacto" required>
+
+        <label for="cliente_direccion">Dirección:</label>
+        <input type="text" id="cliente_direccion" name="cliente_direccion" placeholder="Dirección del cliente" required>
+
+        <label for="cliente_email">Email Cliente:</label>
+        <input type="email" id="cliente_email" name="cliente_email" placeholder="Correo electrónico" required>
+    </div>
+
+    <div class="invoice-form">
+        <h3>Información de la Mascota</h3>
+        <label for="mascota_nombre">Nombre de la Mascota:</label>
+        <input type="text" id="mascota_nombre" name="mascota_nombre" placeholder="Nombre de la mascota" required>
+
+        <label for="mascota_especie">Especie:</label>
+        <select id="mascota_especie" name="mascota_especie" required>
+            <option value="">Seleccione una opción</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Ave">Ave</option>
+            <option value="Otro">Otro</option>
+        </select>
+
+        <label for="mascota_raza">Raza:</label>
+        <input type="text" id="mascota_raza" name="mascota_raza" placeholder="Raza de la mascota" required>
+
+        <label for="mascota_edad">Edad:</label>
+        <input type="number" id="mascota_edad" name="mascota_edad" min="0" placeholder="Edad en años" required>
+    </div>
+
+    <div class="invoice-details">
+        <h3>Servicios Prestados</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" name="servicio_descripcion" placeholder="Consulta, Vacuna, Cirugía, etc." required>
+                    </td>
+                    <td>
+                        <input type="number" name="servicio_cantidad" min="1" value="1" required>
+                    </td>
+                    <td>
+                        <input type="number" name="servicio_precio" step="0.01" required>
+                    </td>
+                    <td>
+                        <span class="total-price">0.00</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="invoice-summary">
+        <p>Subtotal: <span id="subtotal">0.00</span></p>
+        <p>IVA (19%): <span id="tax">0.00</span></p>
+        <p><strong>Total a Pagar:</strong> <span id="total">0.00</span></p>
+    </div>
+
+    <div class="invoice-buttons">
+        <button type="submit" class="generate btn">Generar Factura</button>
+    </div>
+</form>
     <footer>
         <p>&copy; 2024 Veterinaria PYTHON - Todos los derechos reservados.</p>
     </footer>
-
-</body></html>

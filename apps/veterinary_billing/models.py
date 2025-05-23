@@ -10,6 +10,31 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+class Pet(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=100)
+    especie = models.CharField(max_length=50)
+    raza = models.CharField(max_length=50)
+    edad = models.PositiveIntegerField()
+    
+class Service(models.Model):
+    descripcion = models.CharField(max_length=200)
+    cantidad = models.PositiveIntegerField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+
+    @property
+    def total(self):
+        return self.cantidad * self.precio
+
+class Invoice(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    fecha = models.DateField(auto_now_add=True)
+    servicios = models.ManyToManyField(Service, related_name='invoices')
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    iva = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
 class Pets(models.Model):
     name = models.CharField(max_length=100)
     species = models.CharField(max_length=50)
@@ -20,25 +45,6 @@ class Pets(models.Model):
     def __str__(self):
         return f"{self.name} ({self.species})"
 
-class Service(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return self.name
-    
-class Invoice(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    pet = models.ForeignKey(Pets, on_delete=models.CASCADE)
-    services = models.ManyToManyField(Service)
-    date = models.DateField()
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    notes = models.TextField(blank=True, null=True) 
-
-    def __str__(self):
-        return f"Factura #{self.id} - {self.client.name}"
-    
 # Tipos de Datos en Django
 # CharField: models.CharField()
 # Para almacenar cadenas de texto cortas o medianas.
