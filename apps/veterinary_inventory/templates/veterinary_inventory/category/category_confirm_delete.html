@@ -1,0 +1,10 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Eliminar Categoría</h2>
+<p>¿Estás seguro de que deseas eliminar la categoría <strong>{{ category.name }}</strong>?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'category_list' %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}

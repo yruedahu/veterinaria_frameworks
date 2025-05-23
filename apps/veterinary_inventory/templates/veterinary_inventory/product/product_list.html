@@ -1,0 +1,138 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Lista de Productos</h2>
+<div class="product-list-header">
+    <a href="{% url 'product_create' %}" class="btn btn-add-product">+ Agregar Producto</a>
+    <form method="get" class="search-form" id="product-search-form" autocomplete="off">
+        <input type="text" name="q" id="product-search-input" placeholder="Buscar producto..." value="{{ request.GET.q }}">
+    </form>
+</div>
+<table class="table" id="product-table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Proveedor</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr {% if product.stock.is_low_stock %}class="low-stock"{% endif %}>
+            <td class="product-name">
+                <a href="{% url 'product_detail' product.pk %}" class="product-link">{{ product.name }}</a>
+            </td>
+            <td class="product-category">{{ product.category.name }}</td>
+            <td class="product-supplier">{{ product.supplier.name }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.stock.quantity }}</td>
+            <td style="display: flex; flex-direction: column; gap: 8px;">
+                <a href="{% url 'product_edit' product.pk %}" class="btn btn-sm">Editar</a>
+                <a href="{% url 'product_delete' product.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                {% if product.stock.is_low_stock %}
+                    <a href="{% url 'product_stock_alerts' %}" class="btn btn-sm btn-warning">Stock Alert</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No hay productos.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+const searchInput = document.getElementById('product-search-input');
+const table = document.getElementById('product-table');
+searchInput.addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const rows = table.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        const name = row.querySelector('.product-name')?.textContent.toLowerCase() || '';
+        const category = row.querySelector('.product-category')?.textContent.toLowerCase() || '';
+        const supplier = row.querySelector('.product-supplier')?.textContent.toLowerCase() || '';
+        const price = row.children[3]?.textContent.toLowerCase() || '';
+        if (
+            name.includes(filter) ||
+            category.includes(filter) ||
+            supplier.includes(filter) ||
+            price.includes(filter)
+        ) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+<style>
+.product-list-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+.btn-add-product {
+    background: linear-gradient(to right, #F2C94C, #ffe082);
+    color: #222;
+    font-weight: 700;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 7px;
+    padding: 14px 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+.btn-add-product:hover {
+    background: linear-gradient(to right, #ffe082, #F2C94C);
+    color: #111;
+    transform: translateY(-2px) scale(1.04);
+}
+.search-form {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: flex-end;
+}
+.search-form input[type="text"] {
+    width: 100%;
+    max-width: 320px;
+    font-size: 1.1em;
+    padding: 12px 16px;
+    border-radius: 7px;
+    border: 1.5px solid #bdbdbd;
+    background: #f8f8f8;
+    margin: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+@media (max-width: 700px) {
+    .product-list-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .btn-add-product {
+        width: 100%;
+        font-size: 1em;
+        padding: 12px 0;
+    }
+    .search-form input[type="text"] {
+        max-width: 100%;
+    }
+}
+.product-link {
+    color: #2D9CDB;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.product-link:hover {
+    color: #2186b5;
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

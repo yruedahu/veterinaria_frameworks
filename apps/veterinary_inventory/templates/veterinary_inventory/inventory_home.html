@@ -3,25 +3,25 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 {% endblock %}
 
 {% block title %}Inventario - Veterinaria PYTHON{% endblock %}
 
 {% block content %}
-<section class="hero">
-    <div class="hero-text">
+<div class="inventory-hero-wide inventory-hero-home-fix">
+    <div class="inventory-hero-text">
         <h2>Gestiona tu Inventario</h2>
         <p>Controla y administra los productos de tu veterinaria de manera eficiente.</p>
-        <a href="product/1/" class="btn">Ver Productos</a>
+        <a href="{% url 'product_list' %}" class="btn">Ver Productos</a>
     </div>
-    <div class="hero-image">
+    <div class="inventory-hero-image">
         <img src="{% static 'images/inventory.png' %}" alt="Inventario de productos">
     </div>
-</section>
-
-<section class="inventory">
+</div>
+<div class="inventory-carousel-section-wide inventory-carousel-home-fix">
     <h2>Productos Destacados</h2>
-    <div class="swiper-container">
+    <div class="swiper inventory-swiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="{% static 'images/medicines.png' %}" alt="Medicamentos">
@@ -38,22 +38,32 @@
                 <h3>Accesorios</h3>
                 <p>Juguetes, camas y más para el bienestar de las mascotas.</p>
             </div>
-            <div class="swiper-slide">
-                <img src="{% static 'images/hygiene.png' %}" alt="Higiene">
-                <h3>Higiene</h3>
-                <p>Productos para el cuidado y limpieza de las mascotas.</p>
-            </div>
-            <div class="swiper-slide">
-                <img src="{% static 'images/toys.png' %}" alt="Juguetes">
-                <h3>Juguetes</h3>
-                <p>Diversión asegurada para las mascotas.</p>
-            </div>
         </div>
         <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
-</section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper('.inventory-swiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      700: { slidesPerView: 2 },
+      1100: { slidesPerView: 3 }
+    }
+  });
+</script>
 {% endblock %}
 
 

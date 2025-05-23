@@ -1,0 +1,30 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Historial de Movimientos de Inventario</h2>
+<a href="{% url 'movement_create' %}" class="btn">Registrar Movimiento</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Nota</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for move in movements %}
+        <tr>
+            <td>{{ move.date|date:"d/m/Y H:i" }}</td>
+            <td>{{ move.product.name }}</td>
+            <td>{{ move.get_transaction_type_display }}</td>
+            <td>{{ move.quantity }}</td>
+            <td>{{ move.note }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No hay movimientos registrados.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'home_inventory' %}" class="btn">Volver al inventario</a>
+{% endblock %}

@@ -11,13 +11,14 @@
 </head>
 <body>
     <header>
-        <a href="" id="linkIndex">Inicio</a>
+        <a href="{% url 'home' %}" id="linkIndex">Inicio</a>
         <h1>Iniciar sesión</h1>
     </header>
     <main>
         <br>
         <div id="login">
             <form  method="post" id="form_login">
+                {% csrf_token %}
                 <label for="correo">Correo electrónico</label>
                 <input type="email" name="correo" id="correo" placeholder="Correo electrónico">
                 <label for="contrasena">Contraseña</label>

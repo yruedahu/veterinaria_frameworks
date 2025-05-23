@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/inventory_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    {# <link rel="stylesheet" href="{% static 'css/product_detail.css' %}"> #}
     {% endblock %}
 </head>
 
@@ -18,7 +18,7 @@
         <h1>{% block header_title %}Veterinaria PYTHON{% endblock %}</h1>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
                 <li><a href="#">Productos</a></li>
                 <li><a href="#">Inventario</a></li>
                 <li><a href="#">Contacto</a></li>

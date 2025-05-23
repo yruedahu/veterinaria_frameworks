@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar o Eliminar Perfil/Rol - Veterinary Pets</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{% url 'dashboard' useraccount_id %}" id="linkDashboard">Dashboard</a>
+        <h1>Editar o eliminar rol</h1>
+    </header>
+    <main>
+        <div id="editar_rol">
+            <form method="post" id="actualizar_rol">
+                {% csrf_token %}
+                <label for="nombre">Nombre del perfil o rol:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ perfil.nombre }}" maxlength="100" required>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4">{{ perfil.descripcion }}</textarea>
+                <div class="acciones">
+                    <button type="submit" name="accion" value="actualizar">Actualizar Rol</button>
+                </div>
+            </form>
+            <hr>
+            <form method="post" id="eliminar_rol" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este rol?');">
+                {% csrf_token %}
+                <input type="hidden" name="accion" value="eliminar">
+                <div class="acciones">
+                    <button type="submit" class="eliminar">Eliminar perfil</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

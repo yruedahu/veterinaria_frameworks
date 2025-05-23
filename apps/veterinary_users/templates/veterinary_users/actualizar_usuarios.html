@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/users_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{% url 'dashboard' user_account.id %}" id="linkIndex">Dashboard</a>
+        <h1>Actualizar datos del usuario</h1>
+    </header>
+    <main>
+        <div id="actualizar">
+            <form method="post" id="form_actualizar">
+                {% csrf_token %}
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" placeholder="Nombres" value="{{ usuario.nombres }}" required>   
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" value="{{ usuario.apellidos }}" required>
+                <label for="tipodocumento">Tipo de documento:</label>
+                <select id="tipodocumento" name="tipodocumento" required>
+                    <option value="">Seleccione...</option>
+                    <option value="CC" {% if usuario.tipodocumento == "CC" %}selected{% endif %}>Cédula de ciudadanía</option>
+                    <option value="TI" {% if usuario.tipodocumento == "TI" %}selected{% endif %}>Tarjeta de identidad</option>
+                    <option value="CE" {% if usuario.tipodocumento == "CE" %}selected{% endif %}>Cédula de extranjería</option>
+                    <option value="NIT" {% if usuario.tipodocumento == "NIT" %}selected{% endif %}>NIT</option>
+                </select>
+                <label for="numerodocumento">Número de documento:</label>
+                <input type="text" id="numerodocumento" name="numerodocumento" placeholder="Número de documento" value="{{ usuario.numerodocumento }}" required>
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" value="{{ usuario.correo }}" required>
+                <label for="celular">Celular:</label>
+                <input type="text" id="celular" name="celular" placeholder="Celular" value="{{ usuario.celular }}" required>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" placeholder="Dirección" value="{{ usuario.direccion }}" required>
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" required>
+                    <option value="">Seleccione...</option>
+                    {% for perfil in perfiles %}
+                        <option value="{{ perfil.id }}" {% if usuario.rol.id == perfil.id %}selected{% endif %}>{{ perfil.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <div class="acciones">
+                    <button type="submit">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Veterinary Pets. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

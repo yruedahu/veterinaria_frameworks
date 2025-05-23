@@ -1,0 +1,35 @@
+{% extends 'veterinary_inventory/base.html' %}
+{% block content %}
+<h2>Lista de Proveedores</h2>
+<a href="{% url 'supplier_create' %}" class="btn">Agregar Proveedor</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Contacto</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for supplier in suppliers %}
+        <tr>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.contact }}</td>
+            <td>{{ supplier.email }}</td>
+            <td>{{ supplier.phone }}</td>
+            <td>{{ supplier.address }}</td>
+            <td>
+                <a href="{% url 'supplier_edit' supplier.pk %}" class="btn btn-sm">Editar</a>
+                <a href="{% url 'supplier_delete' supplier.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No hay proveedores.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'home_inventory' %}" class="btn">Volver al inventario</a>
+{% endblock %}
