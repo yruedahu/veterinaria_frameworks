@@ -62,11 +62,12 @@ def dashboard(request, useraccount_id):
 
 def actualizar_usuarios(request, usuario_id):
     usuario = get_object_or_404(Usuario, id=usuario_id)
+    user_account = UserAccount.objects.get(usuario = usuario)
     if request.method == 'POST':
         form = UsuarioForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
-            return redirect('dashboard', useraccount_id=usuario.useraccount.id)
+            return redirect('dashboard', useraccount_id=user_account.id)
     else:
         form = UsuarioForm(instance=usuario)
     perfiles = Perfil.objects.all()
@@ -74,6 +75,7 @@ def actualizar_usuarios(request, usuario_id):
         'form': form,
         'usuario': usuario,
         'perfiles': perfiles,
+        'user_account': user_account, 
     })
 
 def actualizar_contrasena(request, useraccount_id):
@@ -98,7 +100,6 @@ def actualizar_contrasena(request, useraccount_id):
     })
 
 def rol(request, useraccount_id):
-    mensaje = ""
     if request.method == 'POST':
         form = PerfilForm(request.POST)
         if form.is_valid():

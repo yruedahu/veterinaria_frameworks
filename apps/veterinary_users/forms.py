@@ -13,10 +13,7 @@ class UserAccountForm(forms.ModelForm):
     class Meta:
         model = UserAccount
         fields = ['username', 'contrasena', 'activo']
-        widgets = {
-            'contrasena': forms.PasswordInput(),
-        }
-
+        
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil

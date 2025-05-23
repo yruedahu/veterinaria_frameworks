@@ -51,6 +51,7 @@
                 <input type="text" id="direccion" name="direccion" maxlength="100" required>
                 <label for="rol">Rol:</label>
                 <select id="rol" name="rol" required>
+                    <option value="">Seleccione...</option>
                     {% for perfil in perfiles %}
                         <option value="{{ perfil.id }}">{{ perfil.nombre }}</option>
                     {% endfor %}
