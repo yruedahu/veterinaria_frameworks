@@ -4,6 +4,10 @@ from .models import Product, Category, Supplier, Stock, Transaction
 from django.urls import reverse
 from django.db.models import F
 from django.utils import timezone
+import pandas as pd
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+import io
 
 def inventory_home(request):
     return render(request, 'veterinary_inventory/inventory_home.html')
@@ -185,3 +189,111 @@ def movement_create(request):
         return redirect('movement_list')
     products = Product.objects.all()
     return render(request, 'veterinary_inventory/movement/movement_form.html', {'products': products})
+
+def export_products(request, filetype):
+    products = Product.objects.select_related('category', 'supplier').all()
+    data = []
+    for p in products:
+        data.append({
+            'ID': p.id,
+            'Nombre': p.name,
+            'Categoría': p.category.name if p.category else '',
+            'Proveedor': p.supplier.name if p.supplier else '',
+            'Descripción': p.description,
+            'Precio': float(p.price),
+            'Stock': p.stock.quantity if hasattr(p, 'stock') else 0,
+            'Stock mínimo': p.stock.min_stock if hasattr(p, 'stock') else 0,
+        })
+    df = pd.DataFrame(data)
+    if filetype == 'csv':
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=productos.csv'
+        df.to_csv(path_or_buf=response, index=False, encoding='utf-8-sig')
+    else:
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename=productos.xlsx'
+        with io.BytesIO() as b:
+            df.to_excel(b, index=False)
+            response.write(b.getvalue())
+    return response
+
+@csrf_exempt
+def import_products(request):
+    if request.method == 'POST' and request.FILES.get('file'):
+        file = request.FILES['file']
+        ext = file.name.split('.')[-1].lower()
+        if ext == 'csv':
+            df = pd.read_csv(file)
+        else:
+            df = pd.read_excel(file)
+        for _, row in df.iterrows():
+            category, _ = Category.objects.get_or_create(name=row.get('Categoría', 'Sin categoría'))
+            supplier = None
+            if row.get('Proveedor'):
+                supplier, _ = Supplier.objects.get_or_create(name=row['Proveedor'], defaults={'contact':'','email':'','phone':'','address':''})
+            product, created = Product.objects.get_or_create(
+                name=row['Nombre'],
+                defaults={
+                    'category': category,
+                    'supplier': supplier,
+                    'description': row.get('Descripción', ''),
+                    'price': row.get('Precio', 0),
+                }
+            )
+            if created:
+                Stock.objects.create(product=product, quantity=row.get('Stock', 0), min_stock=row.get('Stock mínimo', 5))
+        messages.success(request, 'Importación de productos completada.')
+        return redirect('product_list')
+    return render(request, 'veterinary_inventory/product/import_products.html')
+
+
+def export_movements(request, filetype):
+    movements = Transaction.objects.select_related('product').all()
+    data = []
+    for m in movements:
+        data.append({
+            'ID': m.id,
+            'Producto': m.product.name,
+            'Tipo': m.get_transaction_type_display(),
+            'Cantidad': m.quantity,
+            'Fecha': m.date.strftime('%Y-%m-%d %H:%M'),
+            'Nota': m.note,
+        })
+    df = pd.DataFrame(data)
+    if filetype == 'csv':
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=movimientos.csv'
+        df.to_csv(path_or_buf=response, index=False, encoding='utf-8-sig')
+    else:
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename=movimientos.xlsx'
+        with io.BytesIO() as b:
+            df.to_excel(b, index=False)
+            response.write(b.getvalue())
+    return response
+
+
+def export_suppliers(request, filetype):
+    suppliers = Supplier.objects.all()
+    data = []
+    for s in suppliers:
+        data.append({
+            'ID': s.id,
+            'Nombre': s.name,
+            'Contacto': s.contact,
+            'Email': s.email,
+            'Teléfono': s.phone,
+            'Dirección': s.address,
+        })
+    df = pd.DataFrame(data)
+    if filetype == 'csv':
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=proveedores.csv'
+        df.to_csv(path_or_buf=response, index=False, encoding='utf-8-sig')
+    else:
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename=proveedores.xlsx'
+        with io.BytesIO() as b:
+            df.to_excel(b, index=False)
+            response.write(b.getvalue())
+    return response
