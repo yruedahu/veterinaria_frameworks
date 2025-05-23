@@ -58,3 +58,12 @@ class Vaccination(models.Model):
 
     def __str__(self):
         return f"Vacuna {self.vaccine_name} para {self.pet.name}"
+
+
+class MedicalAttachment(models.Model):
+    medical_record = models.ForeignKey('MedicalRecord', on_delete=models.CASCADE, related_name='attachments')
+    file = models.FileField(upload_to='medical_attachments/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Archivo de {self.medical_record.pet.name}: {self.file.name}"

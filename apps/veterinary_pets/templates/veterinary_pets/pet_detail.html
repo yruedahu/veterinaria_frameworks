@@ -28,6 +28,7 @@
         {% if next_pet %}
             <a href="{% url 'pet_detail' next_pet.id %}" class="btn">Siguiente</a>
         {% endif %}
+        <a href="{% url 'medical_record_detail' pet.id %}" class="btn">Ver Historial Médico</a>
     </nav>
 </main>
 {% endblock %}

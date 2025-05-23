@@ -1,0 +1,5 @@
+ID,Nombre,Categoría,Proveedor,Descripción,Precio,Stock,Stock mínimo
+1,Enrofloxacina,Medicamentos,VetPro S.A.,"Antibiótico de amplio espectro utilizado para tratar infecciones bacterianas en perros y gatos, como infecciones respiratorias, urinarias y de piel.",11500.0,0,0
+2,Ivermectina,Medicamentos,VetPro S.A.,"Antiparasitario que se usa para tratar parásitos internos y externos, como gusanos intestinales, ácaros y sarna. No debe usarse en algunas razas sensibles como el Collie.",13000.0,0,0
+3,Carprofeno,Medicamentos,VetPro S.A.,"Antiinflamatorio no esteroideo (AINE) utilizado para aliviar el dolor y la inflamación, especialmente en casos de artritis o después de cirugías.",14500.0,0,0
+4,Clorhexidina,Medicamentos,VetPro S.A.,"Antiséptico y desinfectante tópico en forma de jabón o solución, utilizado para limpiar heridas o tratar infecciones cutáneas leves.",16000.0,0,0
