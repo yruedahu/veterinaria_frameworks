@@ -40,7 +40,7 @@ main {
     padding: 20px;
 }
 
-#login, #registro, #cuenta_usuarios, #actualizar, #actualizar_contrasena, #rol, #editar_rol {
+#login, #registro, #cuenta_usuarios, #actualizar, #actualizar_contrasena, #perfil, #editar_rol {
     max-width: 400px;
     margin: 0 auto;
     background: white;
@@ -50,21 +50,27 @@ main {
 }
 
 #login form, #registro form, #cuenta_usuarios form, #actualizar form, #actualizar_contrasena form, 
-#rol form, #editar_rol form {
+#perfil form, #editar_rol form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
 #login label, #registro label, #cuenta_usuarios label, #actualizar label, #actualizar_contrasena label, 
-#rol label, #editar_rol label{
+#perfil label, #editar_rol label{
     font-weight: 600;
     text-align: left;
 }
 
-#login input, #registro input, #registro select, #cuenta_usuarios input, #actualizar input, 
-#actualizar select, #actualizar_contrasena input, #actualizar_contrasena select, #rol input, 
-#rol textarea, #editar_rol input, #editar_rol textarea {
+#login input, #registro input, #cuenta_usuarios input, #actualizar input, #actualizar_contrasena input, 
+#perfil input, #perfil textarea, #editar_rol input, #editar_rol textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
