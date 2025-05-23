@@ -11,18 +11,18 @@
 </head>
 <body>
     <header>
-        <a href="" id="linkIndex">Salir</a>
+        <a href="{% url 'home_users' %}" id="linkIndex">Salir</a>
         <h1>Dashboard</h1>
     </header>
     <main>
-        <h1>Bienvenido, {{ usuario.username }}</h1>
+        <h1>Bienvenido, {{ user_account.username }}</h1>
         <div class="dashboard">
             <section id="links">
                 <h2>Accesos rápidos</h2>
                 <ul>
-                    <li><a href="{% url 'actualizar_usuarios' %}">Actualizar datos usuario</a></li>
-                    <li><a href="{% url 'actualizar_contrasena'     %}">Actualizar contraseña</a></li>
-                    <li><a href="{% url 'rol' %}">Crear rol</a></li>
+                    <li><a href="{% url 'actualizar_usuarios' usuario.id %}">Actualizar datos usuario</a></li>
+                    <li><a href="{% url 'actualizar_contrasena' user_account.id %}">Actualizar contraseña</a></li>
+                    <li><a href="{% url 'rol' user_account.id %}">Crear rol</a></li>
                 </ul>
             </section>
 
@@ -43,7 +43,7 @@
                 {% if notificaciones %}
                     <ul>
                         {% for notificacion in notificaciones %}
-                            <li>{{ notificacion.mensaje }}</li>
+                            <li><p>{{ notificacion.titulo }}:</p> {{ notificacion.mensaje }}</li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -68,8 +68,7 @@
                                 <td>{{ rol.nombre }}</td>
                                 <td>{{ rol.descripcion }}</td>
                                 <td>
-                                    <a href="{% url 'editar_perfil' rol.id %}">Editar</a> |
-                                    <a href="{% url 'eliminar_perfil' rol.id %}">Eliminar</a>
+                                    <a href="{% url 'editar_rol' rol.id user_account.id %}">Editar</a>
                                 </td>
                             </tr>
                             {% endfor %}

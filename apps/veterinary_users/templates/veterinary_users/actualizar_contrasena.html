@@ -18,12 +18,12 @@
         <div id="actualizar_contrasena">
             <form method="post" id="form_actualizar_contrasena">
                 {% csrf_token %}
-                <label for="old_password">Contraseña actual:</label>
-                <input type="password" id="old_password" name="old_password" placeholder="Contraseña actual" required>
-                <label for="new_password1">Nueva contraseña:</label>
-                <input type="password" id="new_password1" name="new_password1" placeholder="Nueva contraseña" required>
-                <label for="new_password2">Confirmar nueva contraseña:</label>
-                <input type="password" id="new_password2" name="new_password2" placeholder="Confirmar nueva contraseña" required>
+                <label for="contrasenavieja">Contraseña actual:</label>
+                <input type="password" id="contrasenavieja" name="contrasenavieja" placeholder="Contraseña actual" required>
+                <label for="contrasenanueva">Nueva contraseña:</label>
+                <input type="password" id="contrasenanueva" name="contrasenanueva" placeholder="Nueva contraseña" required>
+                <label for="contrasena">Confirmar nueva contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Confirmar nueva contraseña" required>
                 <div class="acciones">
                     <button type="submit">Actualizar contraseña</button>
                 </div>

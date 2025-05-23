@@ -12,10 +12,21 @@
 <body>
     <header>
         <a href="{% url 'home_users' %}" id="linkIndex">Inicio</a>
-        <h1>Agregar usuario</h1>
+        <h1>Registrarse</h1>
     </header>
     <main>
         <div id="registro">
+            {% if form.errors %}
+                <div class="errores">
+                    <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             <form method="post" id="form_registro">
                 {% csrf_token %}
                 <label for="nombres">Nombres:</label>
@@ -24,11 +35,11 @@
                 <input type="text" id="apellidos" name="apellidos" maxlength="50" required>
                 <label for="tipodocumento">Tipodocumento:</label>
                 <select id="tipodocumento" name="tipodocumento" required>
-                    <option value="">----------</option>
-                    <option value="cc">Cédula de ciudadanía</option>
-                    <option value="ti">Tarjeta de identidad</option>
-                    <option value="ce">Cédula de extranjería</option>
-                    <option value="pasaporte">Pasaporte</option>
+                    <option value="">Seleccione...</option>
+                    <option value="CC">Cédula de ciudadanía</option>
+                    <option value="TI">Tarjeta de identidad</option>
+                    <option value="CE">Cédula de extranjería</option>
+                    <option value="NIT">NIT</option>
                 </select>
                 <label for="numerodocumento">Numerodocumento:</label>
                 <input type="text" id="numerodocumento" name="numerodocumento" maxlength="20" required>
@@ -38,16 +49,14 @@
                 <input type="text" id="celular" name="celular" maxlength="15" required>
                 <label for="direccion">Dirección:</label>
                 <input type="text" id="direccion" name="direccion" maxlength="100" required>
-                <label for="perfil">Rol:</label>
-                <select id="perfil" name="perfil" required>
-                    <option value="">----------</option>
-                    <option value="admin">Administrador</option>
-                    <option value="veterinario">Veterinario</option>
-                    <option value="recepcionista">Recepcionista</option>
-                    <option value="cliente">Cliente</option>
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" required>
+                    {% for perfil in perfiles %}
+                        <option value="{{ perfil.id }}">{{ perfil.nombre }}</option>
+                    {% endfor %}
                 </select>
                 <div class="acciones">
-                    <button type="submit">Guardar</button>
+                    <button type="submit">Registrar</button>
                 </div>
             </form>
         </div>

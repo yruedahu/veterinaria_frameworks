@@ -19,35 +19,34 @@
             <form method="post" id="form_actualizar">
                 {% csrf_token %}
                 <label for="nombres">Nombres:</label>
-                <input type="text" id="nombres" name="nombres" placeholder="Nombres" required>
+                <input type="text" id="nombres" name="nombres" placeholder="Nombres" value="{{ usuario.nombres }}" required>   
                 <label for="apellidos">Apellidos:</label>
-                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" value="{{ usuario.apellidos }}" required>
                 <label for="tipodocumento">Tipo de documento:</label>
                 <select id="tipodocumento" name="tipodocumento" required>
                     <option value="">Seleccione...</option>
-                    <option value="cc">Cédula de ciudadanía</option>
-                    <option value="ti">Tarjeta de identidad</option>
-                    <option value="ce">Cédula de extranjería</option>
-                    <option value="pasaporte">Pasaporte</option>
+                    <option value="CC" {% if usuario.tipodocumento == "CC" %}selected{% endif %}>Cédula de ciudadanía</option>
+                    <option value="TI" {% if usuario.tipodocumento == "TI" %}selected{% endif %}>Tarjeta de identidad</option>
+                    <option value="CE" {% if usuario.tipodocumento == "CE" %}selected{% endif %}>Cédula de extranjería</option>
+                    <option value="NIT" {% if usuario.tipodocumento == "NIT" %}selected{% endif %}>NIT</option>
                 </select>
                 <label for="numerodocumento">Número de documento:</label>
-                <input type="text" id="numerodocumento" name="numerodocumento" placeholder="Número de documento" required>
+                <input type="text" id="numerodocumento" name="numerodocumento" placeholder="Número de documento" value="{{ usuario.numerodocumento }}" required>
                 <label for="correo">Correo electrónico:</label>
-                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" value="{{ usuario.correo }}" required>
                 <label for="celular">Celular:</label>
-                <input type="text" id="celular" name="celular" placeholder="Celular" required>
+                <input type="text" id="celular" name="celular" placeholder="Celular" value="{{ usuario.celular }}" required>
                 <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" placeholder="Dirección" required>
-                <label for="perfil">Rol:</label>
-                <select id="perfil" name="perfil" required>
+                <input type="text" id="direccion" name="direccion" placeholder="Dirección" value="{{ usuario.direccion }}" required>
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" required>
                     <option value="">Seleccione...</option>
-                    <option value="admin">Administrador</option>
-                    <option value="veterinario">Veterinario</option>
-                    <option value="recepcionista">Recepcionista</option>
-                    <option value="cliente">Cliente</option>
+                    {% for perfil in perfiles %}
+                        <option value="{{ perfil.id }}" {% if usuario.rol.id == perfil.id %}selected{% endif %}>{{ perfil.nombre }}</option>
+                    {% endfor %}
                 </select>
                 <div class="acciones">
-                    <button type="submit">Guardar cambios</button>
+                    <button type="submit">Actualizar</button>
                 </div>
             </form>
         </div>

@@ -16,6 +16,17 @@
     </header>
     <main>
         <div id="cuenta_usuarios">
+            {% if form.errors %}
+                <div class="errores">
+                    <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             <form method="post" id="form_cuenta_usuarios">
                 {% csrf_token %}
                 {% if usuario_id %}
@@ -23,11 +34,11 @@
                 {% endif %}
                 <label for="username">Usuario:</label>
                 <input type="text" id="username" name="username" maxlength="50" required>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" maxlength="50" required>
-                <label for="is_active">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" maxlength="50" required>
+                <label for="activo">
                     Activo
-                    <input type="checkbox" id="is_active" name="is_active" checked>
+                    <input type="checkbox" id="activo" name="activo" checked>
                 </label>
                 <div class="acciones">
                     <button type="submit">Guardar</button>
