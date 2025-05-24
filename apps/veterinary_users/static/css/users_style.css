@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+    min-height: 100vh;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -5,6 +10,13 @@ body {
     background: #f9f9f9;
     color: #333;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 header {
@@ -104,6 +116,7 @@ select {
 }
 
 footer {
+    flex-shrink: 0;
     background: #6FCF97;
     color: white;
     padding: 15px;
