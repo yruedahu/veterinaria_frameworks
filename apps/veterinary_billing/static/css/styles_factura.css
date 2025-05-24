@@ -1,0 +1,47 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+}
+.invoice-container {
+    max-width: 700px;
+    background: #fff;
+    margin: 40px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.invoice-container h2 {
+    text-align: center;
+    color: #2D9CDB;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+.invoice-container h3 {
+    color: #6FCF97;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #6FCF97;
+    padding-bottom: 5px;
+}
+.invoice-container p {
+    font-size: 1.1em;
+    margin: 8px 0;
+}
+.invoice-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.invoice-container th, .invoice-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+.invoice-container th {
+    background-color: #2D9CDB;
+    color: #fff;
+}
+.invoice-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

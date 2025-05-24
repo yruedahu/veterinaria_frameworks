@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Factura #{{ invoice.id }} - Detalle</title>
+    <link rel="stylesheet" href="{% static 'css/invoice_detail.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Detalle de Factura</h1>
+            <nav>
+                <a href="{% url 'billing_home' %}" class="btn">Volver a Facturación</a>
+            </nav>
+        </header>
+
+        <main class="invoice-detail">
+            <h2>Factura #{{ invoice.id }}</h2>
+            <ul>
+                <li><strong>Cliente:</strong> {{ owner }}</li>
+                <li><strong>Mascota:</strong> {{ pet_name }}</li>
+                <li><strong>Fecha:</strong> {{ date }}</li>
+                <li><strong>Total:</strong> ${{ total }}</li>
+            </ul>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Veterinaria PYTHON - Gestión de Facturación</p>
+    </footer>
+</body>
+</html>

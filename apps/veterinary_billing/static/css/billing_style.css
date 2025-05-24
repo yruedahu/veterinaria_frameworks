@@ -11,6 +11,14 @@ body {
     color: #333;
 }
 
+.logo img {
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+.logo:hover {
+  transform: scale(1.12);   
+}
 
 header {
     background: linear-gradient(to right, #2D9CDB, #6FCF97);
@@ -166,4 +174,25 @@ footer {
     padding: 20px 0;
     margin-top: 50px;
     font-size: 1.1em;
+}
+.invoice-buttons a.btn {
+    display: inline-block;
+    flex: 1;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: #6C2EB9; /* Morado */
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(44, 44, 44, 0.08);
+    font-size: 1.2em;
+    border: none;
+    transition: box-shadow 0.3s, color 0.3s;
+}
+
+.invoice-buttons a.btn:hover {
+    color: #2D9CDB;
+    box-shadow: 0 6px 16px rgba(44, 44, 44, 0.13);
 }

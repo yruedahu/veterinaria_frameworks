@@ -1,0 +1,6 @@
+<h1>¿Seguro que deseas eliminar a {{ client.nombre }}?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+<a href="{% url 'client_list' %}">Cancelar</a>
